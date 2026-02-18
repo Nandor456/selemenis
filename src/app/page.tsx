@@ -1,14 +1,6 @@
-"use client";
-import Logo3D from "@/components/3d/Logo3d";
-import { useCallback, useState } from "react";
+import HeroLogo from "@/components/3d/HeroLogo";
 
 const Home = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const handleLoaded = useCallback(() => {
-    requestAnimationFrame(() => setIsLoaded(true));
-  }, []);
-
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E] flex flex-col items-center justify-center">
       {/* ── Background texture grid ── */}
@@ -39,14 +31,10 @@ const Home = () => {
 
       {/* ── Main content ── */}
       <div
-        className={`relative z-10 flex flex-col items-center gap-8 px-6 text-center transition-opacity duration-[2000ms] ease-in-out ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
+        className={`relative z-10 flex flex-col items-center gap-8 px-6 text-center`}
       >
         {/* 3D Logo */}
-        <div className="h-60 w-full max-w-xs">
-          <Logo3D onLoaded={handleLoaded} />
-        </div>
+        <HeroLogo />
 
         {/* Tagline */}
         <div className="flex flex-col items-center gap-4">
@@ -114,11 +102,7 @@ const Home = () => {
       </div>
 
       {/* ── Scroll hint ── */}
-      <div
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-[2000ms] delay-700 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
-      >
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <span className="text-[10px] uppercase tracking-[4px] text-white/20">
           Scroll
         </span>

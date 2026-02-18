@@ -8,11 +8,14 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#08818d] backdrop-blur supports-[backdrop-filter]:bg-[#08818d]/90 shadow-lg shadow-[#08818d]/20">
-      <div className="container flex h-16 items-center px-6">
+    <header className="sticky top-0 z-50 w-full border-b border-[#2ABFCC]/20 bg-[#0D3D40] shadow-lg shadow-black/30">
+      <div className="container flex h-16 items-center">
         {/* ── LOGO ── */}
-        <div className="mr-4 flex">
-          <Link href="/" className="flex items-center space-x-2">
+        <div className="mr-4 ml-4 flex">
+          <Link
+            href="/"
+            className="flex items-center space-x-2 cursor-pointer select-none"
+          >
             <Image
               src="/sel_logo.png"
               alt="Company Logo"
@@ -32,16 +35,16 @@ const Header = () => {
             <Link
               key={href}
               href={href}
-              className="px-4 py-2 rounded-sm text-white/75 tracking-wide uppercase text-xs font-semibold transition-all duration-200 hover:text-white hover:bg-white/10"
+              className="px-4 py-2 text-[#2ABFCC]/70 tracking-wide uppercase text-xs font-semibold transition-all duration-200 hover:text-[#2ABFCC] hover:bg-[#2ABFCC]/10"
             >
               {label}
             </Link>
           ))}
 
-          {/* Contact as a standout CTA button */}
+          {/* Contact CTA — uses the logo's accent color */}
           <Link
             href="/contact"
-            className="ml-4 px-5 py-2 bg-white text-[#08818d] text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:bg-white/90 hover:-translate-y-px active:translate-y-0"
+            className="ml-4 px-5 py-2 bg-[#2ABFCC] text-[#0D3D40] text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0"
             style={{
               clipPath:
                 "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))",
@@ -53,7 +56,7 @@ const Header = () => {
 
         {/* ── MOBILE MENU TRIGGER ── */}
         <button
-          className="ml-auto md:hidden p-2 text-white/80 hover:text-white transition-colors"
+          className="ml-auto md:hidden p-2 text-[#2ABFCC]/80 hover:text-[#2ABFCC] transition-colors"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -63,7 +66,7 @@ const Header = () => {
 
       {/* ── MOBILE DROPDOWN ── */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#067580] px-6 py-4 flex flex-col gap-1">
+        <div className="md:hidden border-t border-[#2ABFCC]/20 bg-[#0A2E31] px-6 py-4 flex flex-col gap-1">
           {[
             { href: "/about", label: "Our Company" },
             { href: "/projects", label: "Our Projects" },
@@ -73,7 +76,7 @@ const Header = () => {
               key={href}
               href={href}
               onClick={() => setMobileOpen(false)}
-              className="py-3 text-sm font-semibold uppercase tracking-widest text-white/70 border-b border-white/10 last:border-0 hover:text-white transition-colors"
+              className="py-3 text-sm font-semibold uppercase tracking-widest text-[#2ABFCC]/60 border-b border-[#2ABFCC]/10 last:border-0 hover:text-[#2ABFCC] transition-colors"
             >
               {label}
             </Link>
