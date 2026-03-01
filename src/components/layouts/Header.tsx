@@ -8,7 +8,7 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#2ABFCC]/20 bg-[#0D3D40] shadow-lg shadow-black/30">
+    <header className="sticky top-0 z-50 w-full border-b border-[#2ABFCC]/20 bg-[#041517] shadow-lg shadow-black/30">
       <div className="container flex h-16 items-center">
         {/* ── LOGO ── */}
         <div className="mr-4 ml-4 flex">

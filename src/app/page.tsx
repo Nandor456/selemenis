@@ -1,4 +1,5 @@
 import HeroLogo from "@/components/3d/HeroLogo";
+import ScrollSection from "@/components/AboutFirm";
 
 const Home = () => {
   return (
@@ -18,7 +19,6 @@ const Home = () => {
           `,
         }}
       />
-
       {/* ── Building silhouettes ── */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-end justify-around px-12">
         <div className="h-32 w-28 bg-white/[0.03] border-t border-white/[0.05]" />
@@ -28,10 +28,9 @@ const Home = () => {
         <div className="h-36 w-24 bg-white/[0.03] border-t border-white/[0.05]" />
         <div className="h-28 w-20 bg-white/[0.03] border-t border-white/[0.05]" />
       </div>
-
       {/* ── Main content ── */}
       <div
-        className={`relative z-10 flex flex-col items-center gap-8 px-6 text-center`}
+        className={`relative z-10 flex flex-col items-center gap-8 pt-5 text-center`}
       >
         {/* 3D Logo */}
         <HeroLogo />
@@ -100,14 +99,14 @@ const Home = () => {
           ))}
         </div>
       </div>
-
       {/* ── Scroll hint ── */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center pt-5.5">
         <span className="text-[10px] uppercase tracking-[4px] text-white/20">
           Scroll
         </span>
-        <div className="h-10 w-[1px] bg-gradient-to-b from-[#08818d] to-transparent animate-bounce" />
+        <div className="mt-5 h-10 w-[1px] bg-gradient-to-b from-[#08818d] to-transparent animate-bounce" />
       </div>
+      <ScrollSection />
     </section>
   );
 };
