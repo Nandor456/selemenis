@@ -15,6 +15,8 @@ type FormInput = {
   message: string;
 };
 
+const contactPageBackground = "#f8fffe";
+
 async function sendEmail(formData: FormInput) {
   const response = await fetch("/api/email", {
     method: "POST",
@@ -26,6 +28,10 @@ async function sendEmail(formData: FormInput) {
 }
 
 function ContactPage() {
+  const pageStyle: React.CSSProperties & { "--contact-page-bg": string } = {
+    "--contact-page-bg": contactPageBackground,
+  };
+
   const mutation = useMutation({
     mutationFn: sendEmail,
     onSuccess: (data) => {
@@ -48,7 +54,10 @@ function ContactPage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E]">
+    <div
+      className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E]"
+      style={pageStyle}
+    >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -78,19 +87,19 @@ function ContactPage() {
           }}
         />
         <div className="relative z-10 container mx-auto px-6 py-20 md:py-28">
-          <p className="text-xs uppercase tracking-[5px] text-white/50 mb-3 font-semibold">
+          <p className="text-xs uppercase tracking-[5px] text-[#f8fffe]/50 mb-3 font-semibold">
             Get in Touch
           </p>
           <h1
-            className="text-5xl md:text-7xl font-black uppercase tracking-wider text-white leading-none mb-4"
+            className="text-5xl md:text-7xl font-black uppercase tracking-wider text-[#f8fffe] leading-none mb-4"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            Let's Build
+            Let&apos;s Build
             <br />
-            <span className="text-white/30">Something Great</span>
+            <span className="text-[#f8fffe]/30">Something Great</span>
           </h1>
-          <p className="text-white/60 text-sm tracking-widest uppercase max-w-md">
-            Tell us about your project and we'll get back to you within 24
+          <p className="text-[#f8fffe]/60 text-sm tracking-widest uppercase max-w-md">
+            Tell us about your project and we&apos;ll get back to you within 24
             hours.
           </p>
         </div>
@@ -136,7 +145,7 @@ function ContactPage() {
             ].map(({ icon, label, value }) => (
               <div
                 key={label}
-                className="flex items-start gap-4 p-5 bg-white border-l-4 border-[#08818d] shadow-sm"
+                className="flex items-start gap-4 p-5 bg-(--contact-page-bg) border-l-4 border-[#08818d] shadow-sm"
               >
                 <div className="mt-0.5 text-[#08818d] shrink-0">{icon}</div>
                 <div>
@@ -152,13 +161,13 @@ function ContactPage() {
 
             {/* Decorative block */}
             <div
-              className="mt-2 bg-[#08818d] p-6 text-white"
+              className="mt-2 bg-[#08818d] p-6 text-[#f8fffe]"
               style={{
                 clipPath:
                   "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%)",
               }}
             >
-              <p className="text-xs uppercase tracking-[4px] text-white/60 mb-2">
+              <p className="text-xs uppercase tracking-[4px] text-[#f8fffe]/60 mb-2">
                 Response Time
               </p>
               <p
@@ -167,7 +176,7 @@ function ContactPage() {
               >
                 Within 24hrs
               </p>
-              <p className="text-sm text-white/60 mt-1">
+              <p className="text-sm text-[#f8fffe]/60 mt-1">
                 We take every inquiry seriously.
               </p>
             </div>
@@ -175,21 +184,24 @@ function ContactPage() {
 
           {/* ── RIGHT: Form ── */}
           <div className="md:col-span-3">
-            <Card className="w-full border-0 shadow-xl rounded-none p-0 overflow-hidden">
+            <Card className="w-full border-0 shadow-xl rounded-none p-0 overflow-hidden bg-(--contact-page-bg)">
               {/* Card header bar */}
               <div className="bg-[#1C1C1E] px-8 py-5">
                 <p
-                  className="text-2xl font-black uppercase tracking-widest text-white"
+                  className="text-2xl font-black uppercase tracking-widest text-[#f8fffe]"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
                   Send Us a Request
                 </p>
-                <p className="text-xs text-white/40 tracking-widest uppercase mt-1">
+                <p className="text-xs text-[#f8fffe]/40 tracking-widest uppercase mt-1">
                   Fill in the details below
                 </p>
               </div>
 
-              <form className="p-8 bg-white" onSubmit={handleSubmit}>
+              <form
+                className="p-8 bg-(--contact-page-bg)"
+                onSubmit={handleSubmit}
+              >
                 <FieldGroup>
                   {/* Name + Email row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -253,7 +265,7 @@ function ContactPage() {
                       <select
                         id="form-type"
                         name="type"
-                        className="mt-1 w-full border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-[#08818d] focus:ring-1 focus:ring-[#08818d] rounded-none"
+                        className="mt-1 w-full border border-gray-200 bg-(--contact-page-bg) px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-[#08818d] focus:ring-1 focus:ring-[#08818d] rounded-none"
                       >
                         <option>Renovation</option>
                         <option>New Build</option>
@@ -274,7 +286,7 @@ function ContactPage() {
                     <textarea
                       id="form-message"
                       name="message"
-                      className="mt-1 w-full border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 min-h-[130px] focus:outline-none focus:border-[#08818d] focus:ring-1 focus:ring-[#08818d] rounded-none resize-none"
+                      className="mt-1 w-full border border-gray-200 bg-(--contact-page-bg) px-3 py-2 text-sm text-gray-700 min-h-32.5 focus:outline-none focus:border-[#08818d] focus:ring-1 focus:ring-[#08818d] rounded-none resize-none"
                       placeholder="We are looking to add a master bath, renovate the kitchen..."
                     />
                   </Field>
@@ -294,7 +306,7 @@ function ContactPage() {
                     <Button
                       type="submit"
                       disabled={mutation.isPending}
-                      className="bg-[#08818d] text-white hover:bg-[#067580] rounded-none px-10 py-3 text-xs font-bold uppercase tracking-[3px] transition-all duration-200 hover:-translate-y-px active:translate-y-0 disabled:opacity-60"
+                      className="bg-[#08818d] text-[#f8fffe] hover:bg-[#067580] rounded-none px-10 py-3 text-xs font-bold uppercase tracking-[3px] transition-all duration-200 hover:-translate-y-px active:translate-y-0 disabled:opacity-60"
                       style={{
                         clipPath:
                           "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))",

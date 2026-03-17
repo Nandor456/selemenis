@@ -2,18 +2,10 @@
 
 import { useEffect, useRef, useState, RefObject } from "react";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-interface Stat {
-  value: string;
-  label: string;
-}
-
 interface Project {
-  category: string;
   title: string;
   description: string;
   image: string;
-  stats?: Stat[];
 }
 
 // ─── Hook: fires once when element enters viewport ───────────────────────────
@@ -121,10 +113,6 @@ const ProjectRow = ({ item, index }: ProjectRowProps) => {
         {/* Thin teal line accent */}
         <div className="mb-6 h-[2px] w-12 bg-[#08818d]" />
 
-        <p className="mb-2 font-mono text-[10px] uppercase tracking-[5px] text-[#08818d]">
-          {item.category}
-        </p>
-
         <h2
           className="mb-5 text-4xl md:text-5xl font-black uppercase leading-none tracking-widest text-white"
           style={{ fontFamily: "'Bebas Neue', sans-serif" }}
@@ -135,49 +123,6 @@ const ProjectRow = ({ item, index }: ProjectRowProps) => {
         <p className="mb-8 max-w-sm text-sm leading-relaxed tracking-wide text-white/50">
           {item.description}
         </p>
-
-        {/* Stats row */}
-        {item.stats && (
-          <div className="flex gap-8 mb-8">
-            {item.stats.map((s) => (
-              <div key={s.label} className="flex flex-col">
-                <span
-                  className="text-2xl font-black text-[#08818d]"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                >
-                  {s.value}
-                </span>
-                <span className="text-[9px] uppercase tracking-[3px] text-white/30">
-                  {s.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <button
-          className="self-start border border-white/20 px-8 py-3 text-xs font-bold uppercase tracking-[3px] text-white/60 transition-all duration-200 hover:-translate-y-1 hover:border-[#08818d] hover:text-[#08818d] active:translate-y-0"
-          style={{
-            clipPath:
-              "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))",
-          }}
-        >
-          View Project
-        </button>
-
-        {/* Background grid texture */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-50"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              rgba(255,255,255,0.012) 0px,
-              rgba(255,255,255,0.012) 1px,
-              transparent 1px,
-              transparent 40px
-            )`,
-          }}
-        />
       </div>
     </div>
   );
@@ -204,9 +149,9 @@ const SectionHeader = () => {
         className="mb-4 text-6xl md:text-8xl font-black uppercase leading-none tracking-widest text-white"
         style={{ fontFamily: "'Bebas Neue', sans-serif" }}
       >
-        Featured
+        About our
         <br />
-        <span className="text-[#08818d]">Projects</span>
+        <span className="text-[#08818d]">Company</span>
       </h2>
       <div className="mt-4 flex items-center gap-4">
         <div className="h-[1px] w-16 bg-white/10" />
@@ -231,52 +176,29 @@ const Divider = () => (
 // ─── Sample data — swap `image` URLs with your actual photos ─────────────────
 const PROJECTS: Project[] = [
   {
-    category: "Commercial · 2023",
-    title: "Skyline Office Tower",
+    title: "employee",
     description:
-      "A 24-story commercial complex designed for modern enterprise. Featuring floor-to-ceiling glazing, seismic-rated steel frame, and LEED Platinum certification. Completed 3 weeks ahead of schedule.",
-    image: "/images/project-1.jpg", // ← replace with your image
-    stats: [
-      { value: "24", label: "Floors" },
-      { value: "18mo", label: "Duration" },
-      { value: "$42M", label: "Value" },
-    ],
+      "In an industry built on steel, concrete, and blueprints, it’s easy to focus only on the structures we leave behind. But at this firm, we know a fundamental truth: the most important part of any project isn’t the machinery or the materials—it’s the people.",
+    image:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fswattsgroup.com%2Fwp-content%2Fuploads%2F2025%2F06%2FSWG-Intern-at-Horseshoe-Bay-March-2025-2.jpg&f=1&nofb=1&ipt=4731d0ed1d8e629cf37d9d682592e5f91549ca509488760bbb19863067f4d875", // ← replace with your image
   },
   {
-    category: "Residential · 2022",
     title: "Riverside Luxury Villas",
     description:
-      "An exclusive gated community of 40 premium villas along the riverfront. Custom stone facades, heated floors, smart-home integration, and private docking for each unit.",
+      "In an industry built on steel, concrete, and blueprints, it’s easy to focus only on the structures we leave behind. But at this firm, we know a fundamental truth: the most important part of any project isn’t the machinery or the materials—it’s the people.",
     image: "/images/project-2.jpg", // ← replace with your image
-    stats: [
-      { value: "40", label: "Units" },
-      { value: "22mo", label: "Duration" },
-      { value: "$28M", label: "Value" },
-    ],
   },
   {
-    category: "Infrastructure · 2023",
     title: "Central Bridge Overpass",
     description:
       "A 380-meter dual-carriageway bridge connecting two urban districts. Post-tensioned concrete construction with integrated pedestrian walkways and architectural night lighting.",
     image: "/images/project-3.jpg", // ← replace with your image
-    stats: [
-      { value: "380m", label: "Span" },
-      { value: "14mo", label: "Duration" },
-      { value: "$19M", label: "Value" },
-    ],
   },
   {
-    category: "Industrial · 2024",
     title: "Harbor Logistics Hub",
     description:
       "A 60,000 sq ft warehouse and distribution complex with 12 loading docks, reinforced flooring rated at 10 tons per sqm, and a fully automated inventory rail system.",
     image: "/images/project-4.jpg", // ← replace with your image
-    stats: [
-      { value: "60K", label: "Sq Ft" },
-      { value: "10mo", label: "Duration" },
-      { value: "$14M", label: "Value" },
-    ],
   },
 ];
 
