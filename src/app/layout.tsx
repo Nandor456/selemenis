@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Header from "@/components/layouts/Header";
 import QueryProvider from "@/components/providers/QueryProvider";
 import Footer from "@/components/layouts/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Header />
         <QueryProvider>{children}</QueryProvider>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
