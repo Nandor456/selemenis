@@ -9,7 +9,9 @@ interface Project {
 }
 
 // ─── Hook: fires once when element enters viewport ───────────────────────────
-function useInView(threshold = 0.25): [RefObject<HTMLDivElement>, boolean] {
+function useInView(
+  threshold = 0.25,
+): [RefObject<HTMLDivElement | null>, boolean] {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState<boolean>(false);
 

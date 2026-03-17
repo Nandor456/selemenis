@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import companyData from "@/lib/companyData";
 
 // Add this to your globals.css for the Google Font:
 // @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:wght@400;600&display=swap');
@@ -208,7 +209,7 @@ export default function Footer() {
                   className="not-italic text-sm leading-relaxed"
                   style={{ color: "#7aa5a9" }}
                 >
-                  1482 Industrial Blvd, Suite 300
+                  {companyData.address}
                   <br />
                   Houston, TX 77002
                 </address>
@@ -221,7 +222,7 @@ export default function Footer() {
                   style={{ borderColor: "#08818d" }}
                 />
                 <a
-                  href="tel:+17135550199"
+                  href={`tel:${companyData.phone}`}
                   className="text-sm transition-colors duration-200"
                   style={{ color: "#7aa5a9" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
@@ -229,7 +230,7 @@ export default function Footer() {
                     (e.currentTarget.style.color = "#7aa5a9")
                   }
                 >
-                  +1 (713) 555-0199
+                  {companyData.phone}
                 </a>
               </div>
 
@@ -240,7 +241,7 @@ export default function Footer() {
                   style={{ backgroundColor: "#08818d" }}
                 />
                 <a
-                  href="mailto:projects@ironhold.com"
+                  href={`mailto:${companyData.email}`}
                   className="text-sm transition-colors duration-200"
                   style={{ color: "#7aa5a9" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
@@ -248,7 +249,7 @@ export default function Footer() {
                     (e.currentTarget.style.color = "#7aa5a9")
                   }
                 >
-                  projects@ironhold.com
+                  {companyData.email}
                 </a>
               </div>
             </div>
