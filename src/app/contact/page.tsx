@@ -6,6 +6,7 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import companyData from "@/lib/companyData";
 
 type FormInput = {
   name: string;
@@ -125,22 +126,22 @@ function ContactPage() {
               {
                 icon: <MapPin size={18} />,
                 label: "Our Office",
-                value: "123 Construction Ave,\nMetro City, MC 10001",
+                value: companyData.address,
               },
               {
                 icon: <Phone size={18} />,
                 label: "Call Us",
-                value: "+1 (555) 012-3456",
+                value: companyData.phone,
               },
               {
                 icon: <Mail size={18} />,
                 label: "Email Us",
-                value: "hello@yourcompany.com",
+                value: companyData.email,
               },
               {
                 icon: <Clock size={18} />,
                 label: "Working Hours",
-                value: "Mon – Fri: 8:00 AM – 6:00 PM\nSat: 9:00 AM – 2:00 PM",
+                value: companyData.workingHours,
               },
             ].map(({ icon, label, value }) => (
               <div

@@ -4,9 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import companyData from "@/lib/companyData";
 
-// Add this to your globals.css for the Google Font:
-// @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:wght@400;600&display=swap');
-
 const services = [
   "Commercial Construction",
   "Industrial Projects",
@@ -19,8 +16,6 @@ const services = [
 const company = [
   { label: "About Us", href: "/about" },
   { label: "Our Projects", href: "/projects" },
-  { label: "Careers", href: "/careers" },
-  { label: "Safety Record", href: "/safety" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -253,27 +248,6 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-
-            {/* CTA Button */}
-            <Link
-              href="/contact"
-              className="mt-8 inline-block border-2 px-6 py-3 text-[11px] font-bold uppercase text-white transition-all duration-300"
-              style={{
-                borderColor: "#08818d",
-                letterSpacing: "0.22em",
-                fontFamily: "Arial, sans-serif",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#08818d";
-                e.currentTarget.style.color = "#041517";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.color = "#ffffff";
-              }}
-            >
-              Request a Quote →
-            </Link>
           </div>
         </div>
 
@@ -286,7 +260,7 @@ export default function Footer() {
             className="text-xs"
             style={{ color: "#4a7a7f", fontFamily: "Arial, sans-serif" }}
           >
-            © {year} Ironhold Construction Group. All rights reserved.
+            © {year} {companyData.name}. All rights reserved.
           </p>
 
           <div

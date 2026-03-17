@@ -26,6 +26,14 @@ export type Project = {
   solution?: string;
   highlights?: string[];
 };
+export const FILTERS = [
+  "All",
+  "Residential",
+  "Commercial",
+  "Renovation",
+  "Infrastructure",
+] as const;
+export type Filter = (typeof FILTERS)[number];
 
 export const PROJECTS: Project[] = [
   {

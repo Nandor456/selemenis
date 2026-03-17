@@ -5,6 +5,7 @@ const companyData = {
   email: "selemenis2018@gmail.com",
   phone: "+40 748 903 310",
   address: "Strada Exemplu 123, București, România",
+  workingHours: "Mon – Fri: 8:00 AM – 6:00 PM\nSat: 9:00 AM – 2:00 PM",
 };
 
 export default companyData;

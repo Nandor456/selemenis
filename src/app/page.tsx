@@ -1,5 +1,6 @@
 import HeroLogo from "@/components/3d/HeroLogo";
 import ScrollSection from "@/components/AboutFirm";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -57,25 +58,17 @@ const Home = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-          <button
-            className="bg-[#08818d] px-10 py-4 text-sm font-bold uppercase tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
-            style={{
-              clipPath:
-                "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
-            }}
-          >
-            Explore Our Work
-          </button>
-
-          <button
-            className="border border-white/20 px-10 py-4 text-sm font-bold uppercase tracking-[3px] text-white/70 transition-all duration-200 hover:-translate-y-1 hover:border-orange-500 hover:text-orange-500 active:translate-y-0"
-            style={{
-              clipPath:
-                "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
-            }}
-          >
-            Get a Free Quote
-          </button>
+          <Link href="/projects">
+            <button
+              className="bg-[#08818d] px-10 py-4 text-sm font-bold uppercase tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
+              style={{
+                clipPath:
+                  "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
+              }}
+            >
+              Explore Our Work
+            </button>
+          </Link>
         </div>
 
         {/* Trust pills */}

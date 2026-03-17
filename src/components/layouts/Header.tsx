@@ -28,18 +28,17 @@ const Header = () => {
 
         {/* ── DESKTOP NAV ── */}
         <nav className="hidden md:flex items-center gap-1 text-sm font-medium ml-auto">
-          {[
-            { href: "/about", label: "Our Company" },
-            { href: "/projects", label: "Our Projects" },
-          ].map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="px-4 py-2 text-[#2ABFCC]/70 tracking-wide uppercase text-xs font-semibold transition-all duration-200 hover:text-[#2ABFCC] hover:bg-[#2ABFCC]/10"
-            >
-              {label}
-            </Link>
-          ))}
+          {[{ href: "/projects", label: "Our Projects" }].map(
+            ({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="px-4 py-2 text-[#2ABFCC]/70 tracking-wide uppercase text-xs font-semibold transition-all duration-200 hover:text-[#2ABFCC] hover:bg-[#2ABFCC]/10"
+              >
+                {label}
+              </Link>
+            ),
+          )}
 
           {/* Contact CTA — uses the logo's accent color */}
           <Link
@@ -68,7 +67,6 @@ const Header = () => {
       {mobileOpen && (
         <div className="md:hidden border-t border-[#2ABFCC]/20 bg-[#0A2E31] px-6 py-4 flex flex-col gap-1">
           {[
-            { href: "/about", label: "Our Company" },
             { href: "/projects", label: "Our Projects" },
             { href: "/contact", label: "Contact Us" },
           ].map(({ href, label }) => (

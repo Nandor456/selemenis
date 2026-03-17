@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, RefObject } from "react";
+import Image from "next/image";
 
 interface Project {
   title: string;
@@ -65,9 +67,11 @@ const ProjectRow = ({ item, index }: ProjectRowProps) => {
         }}
       >
         {/* Replace src with your actual image */}
-        <img
+        <Image
           src={item.image}
           alt={item.title}
+          width={800}
+          height={600}
           className="w-full h-full object-cover"
           style={{ minHeight: "300px" }}
         />
@@ -175,32 +179,35 @@ const Divider = () => (
   </div>
 );
 
-// ─── Sample data — swap `image` URLs with your actual photos ─────────────────
 const PROJECTS: Project[] = [
   {
-    title: "employee",
+    title: "Holder1",
     description:
-      "In an industry built on steel, concrete, and blueprints, it’s easy to focus only on the structures we leave behind. But at this firm, we know a fundamental truth: the most important part of any project isn’t the machinery or the materials—it’s the people.",
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est quos quas deleniti quae vel repudiandae et nemo earum eum repellat dolore magni sequi reiciendis numquam iure necessitatibus iusto qui officia facere illo, id error cum. Ut unde ex enim delectus!",
     image:
       "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fswattsgroup.com%2Fwp-content%2Fuploads%2F2025%2F06%2FSWG-Intern-at-Horseshoe-Bay-March-2025-2.jpg&f=1&nofb=1&ipt=4731d0ed1d8e629cf37d9d682592e5f91549ca509488760bbb19863067f4d875", // ← replace with your image
   },
   {
-    title: "Riverside Luxury Villas",
+    title: "Holder2",
     description:
-      "In an industry built on steel, concrete, and blueprints, it’s easy to focus only on the structures we leave behind. But at this firm, we know a fundamental truth: the most important part of any project isn’t the machinery or the materials—it’s the people.",
-    image: "/images/project-2.jpg", // ← replace with your image
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est quos quas deleniti quae vel repudiandae et nemo earum eum repellat dolore magni sequi reiciendis numquam iure necessitatibus iusto qui officia facere illo, id error cum. Ut unde ex enim delectus!",
+    image:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Ffeatured%2Flandscape-background-7qz3urxzjuhvnfcl.jpg&f=1&nofb=1&ipt=a35ad62a4b15aad14553fe67df7121e45e6a0c05d798776f28e47df524971b32", // ← replace with your image
   },
   {
-    title: "Central Bridge Overpass",
+    title: "Holder3",
     description:
-      "A 380-meter dual-carriageway bridge connecting two urban districts. Post-tensioned concrete construction with integrated pedestrian walkways and architectural night lighting.",
-    image: "/images/project-3.jpg", // ← replace with your image
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est quos quas deleniti quae vel repudiandae et nemo earum eum repellat dolore magni sequi reiciendis numquam iure necessitatibus iusto qui officia facere illo, id error cum. Ut unde ex enim delectus!",
+
+    image:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Ffeatured%2Flandscape-background-7qz3urxzjuhvnfcl.jpg&f=1&nofb=1&ipt=a35ad62a4b15aad14553fe67df7121e45e6a0c05d798776f28e47df524971b32", // ← replace with your image
   },
   {
-    title: "Harbor Logistics Hub",
+    title: "Holder4",
     description:
-      "A 60,000 sq ft warehouse and distribution complex with 12 loading docks, reinforced flooring rated at 10 tons per sqm, and a fully automated inventory rail system.",
-    image: "/images/project-4.jpg", // ← replace with your image
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est quos quas deleniti quae vel repudiandae et nemo earum eum repellat dolore magni sequi reiciendis numquam iure necessitatibus iusto qui officia facere illo, id error cum. Ut unde ex enim delectus!",
+    image:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Ffeatured%2Flandscape-background-7qz3urxzjuhvnfcl.jpg&f=1&nofb=1&ipt=a35ad62a4b15aad14553fe67df7121e45e6a0c05d798776f28e47df524971b32", // ← replace with your image
   },
 ];
 
@@ -225,22 +232,24 @@ const CtaBand = () => {
         className="text-5xl md:text-7xl font-black uppercase leading-none tracking-widest text-white"
         style={{ fontFamily: "'Bebas Neue', sans-serif" }}
       >
-        Let's Start Your
+        Let&apos;s Start Your
         <br />
         <span className="text-[#08818d]">Next Project</span>
       </h3>
       <p className="max-w-md text-sm font-light tracking-[2px] uppercase text-white/30">
         Free consultation · On-site assessment · Detailed quote within 48 hours
       </p>
-      <button
-        className="mt-2 bg-[#08818d] px-12 py-5 text-sm font-bold uppercase tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
-        style={{
-          clipPath:
-            "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
-        }}
-      >
-        Contact Us Today
-      </button>
+      <Link href="/contact">
+        <button
+          className="mt-2 bg-[#08818d] px-12 py-5 text-sm font-bold uppercase tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
+          style={{
+            clipPath:
+              "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
+          }}
+        >
+          Contact Us Today
+        </button>
+      </Link>
     </div>
   );
 };

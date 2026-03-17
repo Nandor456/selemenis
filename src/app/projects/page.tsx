@@ -2,16 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MapPin, ArrowUpRight } from "lucide-react";
-import { PROJECTS } from "@/lib/projects";
-
-const FILTERS = [
-  "All",
-  "Residential",
-  "Commercial",
-  "Renovation",
-  "Infrastructure",
-] as const;
-type Filter = (typeof FILTERS)[number];
+import { PROJECTS, FILTERS } from "@/lib/projects";
+import type { Filter } from "@/lib/projects";
 
 // ── COMPONENT ─────────────────────────────────────────────
 export default function ProjectsPage() {
