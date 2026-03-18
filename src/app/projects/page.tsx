@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, ArrowUpRight } from "lucide-react";
 import { PROJECTS, FILTERS } from "@/lib/projects";
 import type { Filter } from "@/lib/projects";
@@ -55,8 +56,18 @@ export default function ProjectsPage() {
         <Link
           href={`/projects/${featured.id}`}
           className="relative w-full overflow-hidden cursor-pointer group block"
-          style={{ background: featured.gradient, minHeight: "340px" }}
+          style={{ minHeight: "340px" }}
         >
+          {/* Hero image */}
+          <Image
+            src={featured.images[0]}
+            alt={featured.name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            priority
+          />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/55" />
           {/* Grid overlay */}
           <div
             className="absolute inset-0 opacity-10"
@@ -160,26 +171,19 @@ export default function ProjectsPage() {
               className={`group relative cursor-pointer overflow-hidden bg-white block ${
                 i === 0 && activeFilter === "All" ? "sm:col-span-2" : ""
               }`}
+              style={{
+                height: i === 0 && activeFilter === "All" ? "380px" : "260px",
+              }}
             >
-              {/* Image placeholder */}
-              <div
-                className="w-full transition-transform duration-500 group-hover:scale-105"
-                style={{
-                  background: project.gradient,
-                  height: i === 0 && activeFilter === "All" ? "380px" : "260px",
-                }}
-              >
-                {/* Fake building grid */}
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: `
-                      repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 1px, transparent 1px, transparent 24px),
-                      repeating-linear-gradient(0deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 1px, transparent 1px, transparent 24px)
-                    `,
-                  }}
-                />
-              </div>
+              {/* Project image */}
+              <Image
+                src={project.images[0]}
+                alt={project.name}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              {/* Subtle dark base so text is always legible */}
+              <div className="absolute inset-0 bg-black/20" />
 
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-[#08818d]/90 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -211,7 +215,7 @@ export default function ProjectsPage() {
               </div>
 
               {/* Bottom label (visible when not hovered) */}
-              <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent p-4 group-hover:opacity-0 transition-opacity duration-200">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 group-hover:opacity-0 transition-opacity duration-200">
                 <p className="text-[10px] uppercase tracking-[3px] text-white/50">
                   {project.type}
                 </p>

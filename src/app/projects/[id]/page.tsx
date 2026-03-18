@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   MapPin,
   Calendar,
@@ -8,27 +9,39 @@ import {
   ArrowUpRight,
   Clock,
 } from "lucide-react";
-import { getProjectById, TYPE_ACCENT } from "@/lib/projects";
+import { getProjectById } from "@/lib/projects";
+import ImageCarousel from "@/components/Carousel";
 
-// ── PAGE ────────────────────────────────────────────────────
 export default async function ProjectDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
-  const project = getProjectById(Number(id));
+  const project = getProjectById(Number((await params).id));
   if (!project) notFound();
 
-  const accent = TYPE_ACCENT[project.type];
+  const accent = "#08818d";
+  const heroImage = project.images[0];
+  const galleryImages = project.images.slice(1); // images[1…] for carousel
 
   return (
-    <div className="min-h-screen bg-[#f5f0ea]">
+    <div className="min-h-screen bg-[#1C1C1E]">
       {/* ── HERO ── */}
       <div
         className="relative w-full overflow-hidden"
-        style={{ background: project.gradient, minHeight: "480px" }}
+        style={{ minHeight: "480px" }}
       >
+        {/* Background image */}
+        <Image
+          src={heroImage}
+          alt={project.name}
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/55" />
+        {/* Grid overlay */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -143,26 +156,26 @@ export default async function ProjectDetailPage({
 
       {/* ── BODY ── */}
       <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-[#ddd8d0]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-[#f8fffe]">
           {/* Main column */}
-          <div className="lg:col-span-2 bg-[#f5f0ea] pr-0 lg:pr-12 p-8 lg:p-12 space-y-12">
+          <div className="lg:col-span-2 bg-[#f8fffe] pr-0 lg:pr-12 p-8 lg:p-12 space-y-12">
             <section>
               <p
-                className="text-[10px] uppercase tracking-[5px] mb-3 font-bold"
+                className="text-[14px] uppercase tracking-[5px] mb-3 font-bold"
                 style={{ color: accent }}
               >
                 Overview
               </p>
-              <p className="text-base text-gray-600 leading-relaxed">
+              <p className="text-base text-[#f8fffe] leading-relaxed">
                 {project.description}
               </p>
             </section>
 
             {project.challenge && (
-              <section className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#ddd8d0]">
+              <section className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#f8fffe]">
                 <div className="bg-white p-6">
                   <p
-                    className="text-[9px] uppercase tracking-[4px] font-bold mb-3"
+                    className="text-[12px] uppercase tracking-[4px] font-bold mb-3"
                     style={{ color: accent }}
                   >
                     The Challenge
@@ -173,7 +186,7 @@ export default async function ProjectDetailPage({
                 </div>
                 <div className="bg-white p-6">
                   <p
-                    className="text-[9px] uppercase tracking-[4px] font-bold mb-3"
+                    className="text-[12px] uppercase tracking-[4px] font-bold mb-3"
                     style={{ color: accent }}
                   >
                     Our Solution
@@ -188,7 +201,7 @@ export default async function ProjectDetailPage({
             {project.highlights && (
               <section>
                 <p
-                  className="text-[10px] uppercase tracking-[5px] mb-5 font-bold"
+                  className="text-[14px] uppercase tracking-[5px] mb-5 font-bold"
                   style={{ color: accent }}
                 >
                   Project Highlights
@@ -211,7 +224,7 @@ export default async function ProjectDetailPage({
           </div>
 
           {/* Sidebar */}
-          <div className="bg-white p-8 lg:p-10 space-y-8">
+          <div className="bg-white p-8 lg:p-10 space-y-8 rounded-xl">
             <div>
               <p
                 className="text-[9px] uppercase tracking-[5px] font-bold mb-5"
@@ -260,6 +273,10 @@ export default async function ProjectDetailPage({
             </div>
           </div>
         </div>
+        {/* ── GALLERY CAROUSEL (images[1…]) ── */}
+        {galleryImages.length > 0 && (
+          <ImageCarousel images={galleryImages} name={project.name} />
+        )}
       </div>
 
       {/* ── FOOTER CTA ── */}
