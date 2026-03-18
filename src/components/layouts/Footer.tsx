@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import companyData from "@/lib/companyData";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const services = [
   "Commercial Construction",
@@ -11,12 +12,6 @@ const services = [
   "Site Development",
   "Renovation & Retrofit",
   "Project Management",
-];
-
-const company = [
-  { label: "About Us", href: "/about" },
-  { label: "Our Projects", href: "/projects" },
-  { label: "Contact", href: "/contact" },
 ];
 
 const certifications = [
@@ -28,6 +23,11 @@ const certifications = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { t } = useLanguage();
+  const company = [
+    { label: t.common.projects, href: "/projects" },
+    { label: t.common.contact, href: "/contact" },
+  ];
 
   return (
     <footer
@@ -82,9 +82,7 @@ export default function Footer() {
               className="mb-8 text-sm leading-relaxed"
               style={{ color: "#7aa5a9", maxWidth: "300px" }}
             >
-              Building structures that endure for generations. From deep
-              foundations to steel facades, we deliver precision craftsmanship
-              backed by four decades of industry excellence.
+              {t.footer.brandText}
             </p>
 
             {/* Certification badges */}
@@ -115,7 +113,7 @@ export default function Footer() {
                 fontFamily: "Arial, sans-serif",
               }}
             >
-              Services
+              {t.footer.services}
             </h4>
             <ul className="space-y-3">
               {services.map((s) => (
@@ -151,7 +149,7 @@ export default function Footer() {
                 fontFamily: "Arial, sans-serif",
               }}
             >
-              Company
+              {t.footer.company}
             </h4>
             <ul className="space-y-3">
               {company.map(({ label, href }) => (
@@ -187,7 +185,7 @@ export default function Footer() {
                 fontFamily: "Arial, sans-serif",
               }}
             >
-              Contact Us
+              {t.footer.contactUs}
             </h4>
 
             <div className="space-y-5">
@@ -260,7 +258,7 @@ export default function Footer() {
             className="text-xs"
             style={{ color: "#4a7a7f", fontFamily: "Arial, sans-serif" }}
           >
-            © {year} {companyData.name}. All rights reserved.
+            © {year} {companyData.name}. {t.footer.rightsReserved}
           </p>
 
           <div
@@ -268,9 +266,9 @@ export default function Footer() {
             style={{ color: "#4a7a7f", fontFamily: "Arial, sans-serif" }}
           >
             {[
-              { label: "Privacy Policy", href: "/privacy" },
-              { label: "Terms of Use", href: "/terms" },
-              { label: "Sitemap", href: "/sitemap" },
+              { label: t.footer.privacy, href: "/privacy" },
+              { label: t.footer.terms, href: "/terms" },
+              { label: t.footer.sitemap, href: "/sitemap" },
             ].map(({ label, href }) => (
               <Link
                 key={label}
@@ -302,7 +300,7 @@ export default function Footer() {
                 fontFamily: "Arial, sans-serif",
               }}
             >
-              Licensed &amp; Insured
+              {t.footer.licensedInsured}
             </span>
           </div>
         </div>

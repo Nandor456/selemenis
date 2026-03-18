@@ -2,9 +2,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 function ImageCarousel({ images, name }: { images: string[]; name: string }) {
   const [current, setCurrent] = useState(0);
+  const { t } = useLanguage();
 
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
   const next = () => setCurrent((c) => (c + 1) % images.length);
@@ -15,7 +17,7 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
         className="text-[10px] uppercase tracking-[5px] mb-5 font-bold"
         style={{ color: "#08818d" }}
       >
-        Project Gallery
+        {t.carousel.title}
       </p>
 
       {/* Main slide */}
@@ -31,7 +33,7 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
           >
             <Image
               src={src}
-              alt={`${name} — image ${i + 1}`}
+              alt={`${name} - ${t.carousel.imageAlt} ${i + 1}`}
               fill
               className="object-cover"
             />
@@ -43,7 +45,7 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
           <>
             <button
               onClick={prev}
-              aria-label="Previous image"
+              aria-label={t.carousel.prev}
               className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-[#08818d] text-white p-2 transition-colors"
               style={{
                 clipPath:
@@ -54,7 +56,7 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
             </button>
             <button
               onClick={next}
-              aria-label="Next image"
+              aria-label={t.carousel.next}
               className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-[#08818d] text-white p-2 transition-colors"
               style={{
                 clipPath:
@@ -81,11 +83,11 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
               onClick={() => setCurrent(i)}
               className="relative flex-1 overflow-hidden transition-opacity"
               style={{ height: "72px", opacity: i === current ? 1 : 0.5 }}
-              aria-label={`Go to image ${i + 1}`}
+              aria-label={`${t.carousel.goToImage} ${i + 1}`}
             >
               <Image
                 src={src}
-                alt={`${name} thumbnail ${i + 1}`}
+                alt={`${name} ${t.carousel.thumbnailAlt} ${i + 1}`}
                 fill
                 className="object-cover"
               />

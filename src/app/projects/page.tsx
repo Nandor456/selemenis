@@ -5,10 +5,27 @@ import Image from "next/image";
 import { MapPin, ArrowUpRight } from "lucide-react";
 import { PROJECTS, FILTERS } from "@/lib/projects";
 import type { Filter } from "@/lib/projects";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 // ── COMPONENT ─────────────────────────────────────────────
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<Filter>("All");
+  const { t } = useLanguage();
+
+  const filterLabel: Record<Filter, string> = {
+    All: t.projectsPage.filterAll,
+    Residential: t.projectsPage.filterResidential,
+    Commercial: t.projectsPage.filterCommercial,
+    Renovation: t.projectsPage.filterRenovation,
+    Infrastructure: t.projectsPage.filterInfrastructure,
+  };
+
+  const typeLabel: Record<Exclude<Filter, "All">, string> = {
+    Residential: t.projectsPage.typeResidential,
+    Commercial: t.projectsPage.typeCommercial,
+    Renovation: t.projectsPage.typeRenovation,
+    Infrastructure: t.projectsPage.typeInfrastructure,
+  };
 
   const filtered =
     activeFilter === "All"
@@ -34,19 +51,18 @@ export default function ProjectsPage() {
         <div className="pointer-events-none absolute -bottom-10 -right-10 h-72 w-72 rounded-full bg-white/10 blur-[80px]" />
         <div className="relative z-10 container mx-auto px-6 py-20 md:py-28">
           <p className="text-xs uppercase tracking-[5px] text-white/50 mb-3 font-semibold">
-            Portfolio
+            {t.projectsPage.portfolio}
           </p>
           <h1
             className="text-5xl md:text-7xl font-black uppercase tracking-wider text-white leading-none mb-4"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            Our Projects
+            {t.projectsPage.titleTop}
             <br />
-            <span className="text-white/25">Built With Pride</span>
+            <span className="text-white/25">{t.projectsPage.titleAccent}</span>
           </h1>
           <p className="text-white/60 text-sm tracking-widest uppercase max-w-md">
-            {PROJECTS.length} completed projects across residential, commercial,
-            and infrastructure.
+            {PROJECTS.length} {t.projectsPage.subtitle}
           </p>
         </div>
       </div>
@@ -81,7 +97,7 @@ export default function ProjectsPage() {
           <div className="relative z-10 container mx-auto px-6 py-16 flex flex-col md:flex-row items-start md:items-center gap-10 justify-between">
             <div>
               <p className="text-xs uppercase tracking-[5px] text-[#08818d] mb-3 font-bold">
-                ★ Featured Project
+                ★ {t.projectsPage.featured}
               </p>
               <h2
                 className="text-4xl md:text-6xl font-black uppercase tracking-wider text-white leading-none mb-3"
@@ -93,7 +109,7 @@ export default function ProjectsPage() {
                 <MapPin size={12} />
                 {featured.location}
                 <span className="mx-2">·</span>
-                {featured.type}
+                {typeLabel[featured.type]}
                 <span className="mx-2">·</span>
                 {featured.year}
               </div>
@@ -104,9 +120,9 @@ export default function ProjectsPage() {
             {/* Stats */}
             <div className="flex gap-8 shrink-0">
               {[
-                { label: "Area", value: featured.sqft },
-                { label: "Duration", value: featured.duration },
-                { label: "Year", value: String(featured.year) },
+                { label: t.projectsPage.area, value: featured.sqft },
+                { label: t.projectsPage.duration, value: featured.duration },
+                { label: t.projectsPage.year, value: String(featured.year) },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col items-center">
                   <span
@@ -124,7 +140,7 @@ export default function ProjectsPage() {
           </div>
           {/* Hover CTA */}
           <div className="absolute bottom-6 right-8 flex items-center gap-2 text-white/30 group-hover:text-[#08818d] transition-colors text-xs uppercase tracking-widest font-bold">
-            View Details <ArrowUpRight size={14} />
+            {t.projectsPage.viewDetails} <ArrowUpRight size={14} />
           </div>
         </Link>
       )}
@@ -151,11 +167,14 @@ export default function ProjectsPage() {
                     : {}
                 }
               >
-                {f}
+                {filterLabel[f]}
               </button>
             ))}
             <span className="ml-auto shrink-0 text-xs text-white/20 tracking-widest uppercase">
-              {filtered.length} project{filtered.length !== 1 ? "s" : ""}
+              {filtered.length}{" "}
+              {filtered.length !== 1
+                ? t.projectsPage.projectCountPlural
+                : t.projectsPage.projectCountSingular}
             </span>
           </div>
         </div>
@@ -188,7 +207,7 @@ export default function ProjectsPage() {
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-[#08818d]/90 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="text-xs uppercase tracking-[4px] text-white/60 mb-1">
-                  {project.type} · {project.year}
+                  {typeLabel[project.type]} · {project.year}
                 </p>
                 <h3
                   className="text-2xl font-black uppercase tracking-wider text-white mb-1"
@@ -210,14 +229,14 @@ export default function ProjectsPage() {
                   ))}
                 </div>
                 <div className="mt-4 flex items-center gap-1 text-white font-bold text-xs uppercase tracking-widest">
-                  View Details <ArrowUpRight size={13} />
+                  {t.projectsPage.viewDetails} <ArrowUpRight size={13} />
                 </div>
               </div>
 
               {/* Bottom label (visible when not hovered) */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 group-hover:opacity-0 transition-opacity duration-200">
                 <p className="text-[10px] uppercase tracking-[3px] text-white/50">
-                  {project.type}
+                  {typeLabel[project.type]}
                 </p>
                 <p
                   className="text-lg font-black uppercase tracking-wide text-white"
@@ -246,19 +265,18 @@ export default function ProjectsPage() {
         </div>
         <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center text-center gap-6">
           <p className="text-xs uppercase tracking-[5px] text-[#08818d] font-semibold">
-            Start Your Project
+            {t.projectsPage.startProject}
           </p>
           <h2
             className="text-4xl md:text-6xl font-black uppercase tracking-wider text-white leading-none"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            Have a Project
+            {t.projectsPage.haveProject}
             <br />
-            <span className="text-white/25">In Mind?</span>
+            <span className="text-white/25">{t.projectsPage.inMind}</span>
           </h2>
           <p className="text-white/40 text-sm tracking-widest uppercase max-w-sm">
-            Let&apos;s build something you&apos;ll be proud of. We respond
-            within 24 hours.
+            {t.projectsPage.ctaDescription}
           </p>
           <Link
             href="/contact"
@@ -268,7 +286,7 @@ export default function ProjectsPage() {
                 "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
             }}
           >
-            Contact Us Today
+            {t.projectsPage.ctaButton}
           </Link>
         </div>
       </div>

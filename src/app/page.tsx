@@ -1,8 +1,13 @@
+"use client";
+
 import HeroLogo from "@/components/3d/HeroLogo";
 import ScrollSection from "@/components/AboutFirm";
 import Link from "next/link";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const Home = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E] flex flex-col items-center justify-center">
       {/* ── Background texture grid ── */}
@@ -39,20 +44,20 @@ const Home = () => {
         {/* Tagline */}
         <div className="flex flex-col items-center gap-4">
           <p className="font-mono text-xs uppercase tracking-[6px] text-[#08818d]">
-            Construction & Development
+            {t.home.eyebrow}
           </p>
 
           <h1
             className="text-5xl font-black uppercase leading-none tracking-widest text-white md:text-7xl lg:text-8xl"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            We Are Building
+            {t.home.titleTop}
             <br />
-            With <span className="text-[#08818d]">Happiness</span>
+            <span className="text-[#08818d]">{t.home.titleAccent}</span>
           </h1>
 
           <p className="max-w-md text-sm font-light tracking-[3px] uppercase text-white/40">
-            Quality Construction · Trusted Craftsmanship · Built for Life
+            {t.home.subtitle}
           </p>
         </div>
 
@@ -66,7 +71,7 @@ const Home = () => {
                   "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
               }}
             >
-              Explore Our Work
+              {t.home.explore}
             </button>
           </Link>
         </div>
@@ -74,9 +79,9 @@ const Home = () => {
         {/* Trust pills */}
         <div className="flex flex-wrap justify-center gap-6 pt-4 text-center">
           {[
-            { num: "20+", label: "Years" },
-            { num: "500+", label: "Projects" },
-            { num: "100%", label: "Satisfaction" },
+            { num: "20+", label: t.home.years },
+            { num: "500+", label: t.home.projects },
+            { num: "100%", label: t.home.satisfaction },
           ].map(({ num, label }) => (
             <div key={label} className="flex flex-col items-center">
               <span
@@ -95,7 +100,7 @@ const Home = () => {
       {/* ── Scroll hint ── */}
       <div className="flex flex-col items-center pt-5.5">
         <span className="text-[10px] uppercase tracking-[4px] text-white/20">
-          Scroll
+          {t.home.scroll}
         </span>
         <div className="mt-5 h-10 w-[1px] bg-gradient-to-b from-[#08818d] to-transparent animate-bounce" />
       </div>

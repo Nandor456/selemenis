@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -11,12 +12,26 @@ import {
 } from "lucide-react";
 import { getProjectById } from "@/lib/projects";
 import ImageCarousel from "@/components/Carousel";
+import { DEFAULT_LOCALE, getTranslations, isLocale } from "@/lib/i18n";
 
 export default async function ProjectDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const cookieStore = await cookies();
+  const localeCookie = cookieStore.get("locale")?.value;
+  const locale =
+    localeCookie && isLocale(localeCookie) ? localeCookie : DEFAULT_LOCALE;
+  const t = getTranslations(locale);
+
+  const typeLabel = {
+    Residential: t.projectsPage.typeResidential,
+    Commercial: t.projectsPage.typeCommercial,
+    Renovation: t.projectsPage.typeRenovation,
+    Infrastructure: t.projectsPage.typeInfrastructure,
+  };
+
   const project = getProjectById(Number((await params).id));
   if (!project) notFound();
 
@@ -61,7 +76,7 @@ export default async function ProjectDetailPage({
             href="/projects"
             className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs uppercase tracking-[4px] font-bold"
           >
-            <ArrowLeft size={13} /> Back to Projects
+            <ArrowLeft size={13} /> {t.projectDetail.back}
           </Link>
         </div>
 
@@ -72,7 +87,7 @@ export default async function ProjectDetailPage({
                 className="inline-block px-3 py-1 text-[10px] uppercase tracking-[4px] font-bold text-white mb-4"
                 style={{ backgroundColor: accent }}
               >
-                {project.type}
+                {typeLabel[project.type]}
               </span>
               <h1
                 className="text-5xl md:text-8xl font-black uppercase tracking-wider text-white leading-none mb-4"
@@ -100,17 +115,17 @@ export default async function ProjectDetailPage({
             <div className="flex gap-6 shrink-0">
               {[
                 {
-                  label: "Area",
+                  label: t.projectDetail.area,
                   value: project.sqft,
                   icon: <Ruler size={14} />,
                 },
                 {
-                  label: "Duration",
+                  label: t.projectDetail.duration,
                   value: project.duration,
                   icon: <Clock size={14} />,
                 },
                 {
-                  label: "Completed",
+                  label: t.projectDetail.completed,
                   value: String(project.year),
                   icon: <Calendar size={14} />,
                 },
@@ -164,7 +179,7 @@ export default async function ProjectDetailPage({
                 className="text-[14px] uppercase tracking-[5px] mb-3 font-bold"
                 style={{ color: accent }}
               >
-                Overview
+                {t.projectDetail.overview}
               </p>
               <p className="text-base text-[#f8fffe] leading-relaxed">
                 {project.description}
@@ -178,7 +193,7 @@ export default async function ProjectDetailPage({
                     className="text-[12px] uppercase tracking-[4px] font-bold mb-3"
                     style={{ color: accent }}
                   >
-                    The Challenge
+                    {t.projectDetail.challenge}
                   </p>
                   <p className="text-sm text-gray-600 leading-relaxed">
                     {project.challenge}
@@ -189,7 +204,7 @@ export default async function ProjectDetailPage({
                     className="text-[12px] uppercase tracking-[4px] font-bold mb-3"
                     style={{ color: accent }}
                   >
-                    Our Solution
+                    {t.projectDetail.solution}
                   </p>
                   <p className="text-sm text-gray-600 leading-relaxed">
                     {project.solution}
@@ -204,7 +219,7 @@ export default async function ProjectDetailPage({
                   className="text-[14px] uppercase tracking-[5px] mb-5 font-bold"
                   style={{ color: accent }}
                 >
-                  Project Highlights
+                  {t.projectDetail.highlights}
                 </p>
                 <ul className="space-y-px">
                   {project.highlights.map((hl, i) => (
@@ -230,16 +245,22 @@ export default async function ProjectDetailPage({
                 className="text-[9px] uppercase tracking-[5px] font-bold mb-5"
                 style={{ color: accent }}
               >
-                Project Info
+                {t.projectDetail.info}
               </p>
               <dl className="space-y-px">
                 {[
-                  { label: "Client", value: project.client ?? "Confidential" },
-                  { label: "Type", value: project.type },
-                  { label: "Location", value: project.location },
-                  { label: "Year", value: String(project.year) },
-                  { label: "Size", value: project.sqft },
-                  { label: "Duration", value: project.duration },
+                  {
+                    label: t.projectDetail.client,
+                    value: project.client ?? t.projectDetail.confidential,
+                  },
+                  {
+                    label: t.projectDetail.type,
+                    value: typeLabel[project.type],
+                  },
+                  { label: t.projectDetail.location, value: project.location },
+                  { label: t.projectDetail.year, value: String(project.year) },
+                  { label: t.projectDetail.size, value: project.sqft },
+                  { label: t.projectDetail.duration, value: project.duration },
                 ].map(({ label, value }) => (
                   <div key={label} className="flex bg-[#f5f0ea]">
                     <dt className="w-28 shrink-0 px-3 py-2.5 text-[9px] uppercase tracking-[3px] text-gray-400 font-bold border-r border-[#ddd8d0]">
@@ -255,8 +276,7 @@ export default async function ProjectDetailPage({
 
             <div className="border-t border-[#ddd8d0] pt-8">
               <p className="text-xs text-gray-500 leading-relaxed mb-5">
-                Interested in a similar project? Let&apos;s discuss how we can
-                bring your vision to life.
+                {t.projectDetail.sidebarText}
               </p>
               <Link
                 href="/contact"
@@ -267,7 +287,7 @@ export default async function ProjectDetailPage({
                     "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))",
                 }}
               >
-                Start a Similar Project
+                {t.projectDetail.similarProject}
                 <ArrowUpRight size={14} />
               </Link>
             </div>
@@ -297,19 +317,18 @@ export default async function ProjectDetailPage({
             className="text-xs uppercase tracking-[5px] font-semibold"
             style={{ color: accent }}
           >
-            Start Your Project
+            {t.projectDetail.startProject}
           </p>
           <h2
             className="text-4xl md:text-6xl font-black uppercase tracking-wider text-white leading-none"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            Have a Project
+            {t.projectDetail.haveProject}
             <br />
-            <span className="text-white/25">In Mind?</span>
+            <span className="text-white/25">{t.projectDetail.inMind}</span>
           </h2>
           <p className="text-white/40 text-sm tracking-widest uppercase max-w-sm">
-            Let&apos;s build something you&apos;ll be proud of. We respond
-            within 24 hours.
+            {t.projectDetail.ctaDescription}
           </p>
           <Link
             href="/contact"
@@ -320,7 +339,7 @@ export default async function ProjectDetailPage({
                 "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
             }}
           >
-            Contact Us Today
+            {t.projectDetail.ctaButton}
           </Link>
         </div>
       </div>

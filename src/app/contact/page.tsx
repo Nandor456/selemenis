@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import companyData from "@/lib/companyData";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 type FormInput = {
   name: string;
@@ -29,6 +30,8 @@ async function sendEmail(formData: FormInput) {
 }
 
 function ContactPage() {
+  const { t } = useLanguage();
+
   const pageStyle: React.CSSProperties & { "--contact-page-bg": string } = {
     "--contact-page-bg": contactPageBackground,
   };
@@ -89,19 +92,20 @@ function ContactPage() {
         />
         <div className="relative z-10 container mx-auto px-6 py-20 md:py-28">
           <p className="text-xs uppercase tracking-[5px] text-[#f8fffe]/50 mb-3 font-semibold">
-            Get in Touch
+            {t.contactPage.eyebrow}
           </p>
           <h1
             className="text-5xl md:text-7xl font-black uppercase tracking-wider text-[#f8fffe] leading-none mb-4"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            Let&apos;s Build
+            {t.contactPage.titleTop}
             <br />
-            <span className="text-[#f8fffe]/30">Something Great</span>
+            <span className="text-[#f8fffe]/30">
+              {t.contactPage.titleAccent}
+            </span>
           </h1>
           <p className="text-[#f8fffe]/60 text-sm tracking-widest uppercase max-w-md">
-            Tell us about your project and we&apos;ll get back to you within 24
-            hours.
+            {t.contactPage.subtitle}
           </p>
         </div>
       </div>
@@ -116,7 +120,7 @@ function ContactPage() {
                 className="text-3xl font-black uppercase tracking-wider text-[#08818d] mb-2"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
-                Contact Info
+                {t.contactPage.contactInfo}
               </h2>
               <div className="h-1 w-12 bg-[#08818d]" />
             </div>
@@ -125,22 +129,22 @@ function ContactPage() {
             {[
               {
                 icon: <MapPin size={18} />,
-                label: "Our Office",
+                label: t.contactPage.office,
                 value: companyData.address,
               },
               {
                 icon: <Phone size={18} />,
-                label: "Call Us",
+                label: t.contactPage.callUs,
                 value: companyData.phone,
               },
               {
                 icon: <Mail size={18} />,
-                label: "Email Us",
+                label: t.contactPage.emailUs,
                 value: companyData.email,
               },
               {
                 icon: <Clock size={18} />,
-                label: "Working Hours",
+                label: t.contactPage.workingHours,
                 value: companyData.workingHours,
               },
             ].map(({ icon, label, value }) => (
@@ -169,16 +173,16 @@ function ContactPage() {
               }}
             >
               <p className="text-xs uppercase tracking-[4px] text-[#f8fffe]/60 mb-2">
-                Response Time
+                {t.contactPage.responseTime}
               </p>
               <p
                 className="text-4xl font-black tracking-wider"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
-                Within 24hrs
+                {t.contactPage.within24}
               </p>
               <p className="text-sm text-[#f8fffe]/60 mt-1">
-                We take every inquiry seriously.
+                {t.contactPage.responseText}
               </p>
             </div>
           </div>
@@ -192,10 +196,10 @@ function ContactPage() {
                   className="text-2xl font-black uppercase tracking-widest text-[#f8fffe]"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  Send Us a Request
+                  {t.contactPage.sendRequest}
                 </p>
                 <p className="text-xs text-[#f8fffe]/40 tracking-widest uppercase mt-1">
-                  Fill in the details below
+                  {t.contactPage.fillDetails}
                 </p>
               </div>
 
@@ -211,13 +215,13 @@ function ContactPage() {
                         htmlFor="form-name"
                         className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
                       >
-                        Full Name *
+                        {t.contactPage.fullName}
                       </FieldLabel>
                       <Input
                         id="form-name"
                         name="name"
                         type="text"
-                        placeholder="Jane Smith"
+                        placeholder={t.contactPage.placeholderName}
                         required
                         className="rounded-none border-gray-200 focus:border-[#08818d] focus:ring-[#08818d] mt-1"
                       />
@@ -227,13 +231,13 @@ function ContactPage() {
                         htmlFor="form-email"
                         className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
                       >
-                        Email Address
+                        {t.contactPage.emailAddress}
                       </FieldLabel>
                       <Input
                         id="form-email"
                         name="email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder={t.contactPage.placeholderEmail}
                         className="rounded-none border-gray-200 focus:border-[#08818d] focus:ring-[#08818d] mt-1"
                       />
                     </Field>
@@ -246,13 +250,13 @@ function ContactPage() {
                         htmlFor="form-phone"
                         className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
                       >
-                        Phone Number
+                        {t.contactPage.phoneNumber}
                       </FieldLabel>
                       <Input
                         id="form-phone"
                         name="phone"
                         type="tel"
-                        placeholder="+1 (555) 123-4567"
+                        placeholder={t.contactPage.placeholderPhone}
                         className="rounded-none border-gray-200 focus:border-[#08818d] focus:ring-[#08818d] mt-1"
                       />
                     </Field>
@@ -261,17 +265,17 @@ function ContactPage() {
                         htmlFor="form-type"
                         className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
                       >
-                        Project Type
+                        {t.contactPage.projectType}
                       </FieldLabel>
                       <select
                         id="form-type"
                         name="type"
                         className="mt-1 w-full border border-gray-200 bg-(--contact-page-bg) px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-[#08818d] focus:ring-1 focus:ring-[#08818d] rounded-none"
                       >
-                        <option>Renovation</option>
-                        <option>New Build</option>
-                        <option>Commercial</option>
-                        <option>Small Repair</option>
+                        <option>{t.contactPage.typeRenovation}</option>
+                        <option>{t.contactPage.typeNewBuild}</option>
+                        <option>{t.contactPage.typeCommercial}</option>
+                        <option>{t.contactPage.typeSmallRepair}</option>
                       </select>
                     </Field>
                   </div>
@@ -282,13 +286,13 @@ function ContactPage() {
                       htmlFor="form-message"
                       className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
                     >
-                      Project Details
+                      {t.contactPage.projectDetails}
                     </FieldLabel>
                     <textarea
                       id="form-message"
                       name="message"
                       className="mt-1 w-full border border-gray-200 bg-(--contact-page-bg) px-3 py-2 text-sm text-gray-700 min-h-32.5 focus:outline-none focus:border-[#08818d] focus:ring-1 focus:ring-[#08818d] rounded-none resize-none"
-                      placeholder="We are looking to add a master bath, renovate the kitchen..."
+                      placeholder={t.contactPage.placeholderMessage}
                     />
                   </Field>
 
@@ -296,12 +300,12 @@ function ContactPage() {
                   <div className="flex justify-end items-center gap-4 pt-6 mt-2 border-t border-gray-100">
                     {mutation.isSuccess && (
                       <span className="text-xs uppercase tracking-widest text-[#08818d] font-semibold">
-                        ✓ Message Sent!
+                        ✓ {t.contactPage.success}
                       </span>
                     )}
                     {mutation.isError && (
                       <span className="text-xs uppercase tracking-widest text-red-500 font-semibold">
-                        ✗ Something went wrong.
+                        ✗ {t.contactPage.error}
                       </span>
                     )}
                     <Button
@@ -313,7 +317,9 @@ function ContactPage() {
                           "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))",
                       }}
                     >
-                      {mutation.isPending ? "Sending..." : "Send Request"}
+                      {mutation.isPending
+                        ? t.contactPage.sending
+                        : t.contactPage.send}
                     </Button>
                   </div>
                 </FieldGroup>
