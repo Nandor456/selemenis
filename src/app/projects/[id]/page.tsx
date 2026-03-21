@@ -51,6 +51,8 @@ export default async function ProjectDetailPage({
           src={heroImage}
           alt={project.name}
           fill
+          quality={90}
+          sizes="100vw"
           className="object-cover"
           priority
         />
