@@ -7,6 +7,7 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import Footer from "@/components/layouts/Footer";
 import LanguageProvider from "@/components/providers/LanguageProvider";
 import { DEFAULT_LOCALE, isLocale } from "@/lib/i18n";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,11 +38,13 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Analytics />
         <LanguageProvider initialLocale={locale}>
           <Header />
           <QueryProvider>{children}</QueryProvider>
           <Footer />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
