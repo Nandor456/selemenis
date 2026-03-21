@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, RefObject } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 interface Project {
   title: string;
@@ -137,6 +138,7 @@ const ProjectRow = ({ item, index }: ProjectRowProps) => {
 // ─── Section header ───────────────────────────────────────────────────────────
 const SectionHeader = () => {
   const [ref, visible] = useInView(0.3);
+  const { t } = useLanguage();
 
   return (
     <div
@@ -149,20 +151,20 @@ const SectionHeader = () => {
       }}
     >
       <p className="mb-4 font-mono text-[10px] uppercase tracking-[6px] text-[#08818d]">
-        Our Portfolio
+        {t.aboutFirm.eyebrow}
       </p>
       <h2
         className="mb-4 text-6xl md:text-8xl font-black uppercase leading-none tracking-widest text-white"
         style={{ fontFamily: "'Bebas Neue', sans-serif" }}
       >
-        About our
+        {t.aboutFirm.titleTop}
         <br />
-        <span className="text-[#08818d]">Company</span>
+        <span className="text-[#08818d]">{t.aboutFirm.titleAccent}</span>
       </h2>
       <div className="mt-4 flex items-center gap-4">
         <div className="h-[1px] w-16 bg-white/10" />
         <p className="text-xs uppercase tracking-[4px] text-white/30">
-          Built with precision
+          {t.aboutFirm.builtPrecision}
         </p>
         <div className="h-[1px] w-16 bg-white/10" />
       </div>
@@ -214,6 +216,7 @@ const PROJECTS: Project[] = [
 // ─── Bottom CTA ───────────────────────────────────────────────────────────────
 const CtaBand = () => {
   const [ref, visible] = useInView(0.3);
+  const { t } = useLanguage();
 
   return (
     <div
@@ -226,18 +229,18 @@ const CtaBand = () => {
       }}
     >
       <p className="font-mono text-[10px] uppercase tracking-[6px] text-[#08818d]">
-        Ready to Build?
+        {t.aboutFirm.ready}
       </p>
       <h3
         className="text-5xl md:text-7xl font-black uppercase leading-none tracking-widest text-white"
         style={{ fontFamily: "'Bebas Neue', sans-serif" }}
       >
-        Let&apos;s Start Your
+        {t.aboutFirm.ctaTop}
         <br />
-        <span className="text-[#08818d]">Next Project</span>
+        <span className="text-[#08818d]">{t.aboutFirm.ctaAccent}</span>
       </h3>
       <p className="max-w-md text-sm font-light tracking-[2px] uppercase text-white/30">
-        Free consultation · On-site assessment · Detailed quote within 48 hours
+        {t.aboutFirm.ctaFooter}
       </p>
       <Link href="/contact">
         <button
@@ -247,7 +250,7 @@ const CtaBand = () => {
               "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
           }}
         >
-          Contact Us Today
+          {t.aboutFirm.ctaButton}
         </button>
       </Link>
     </div>

@@ -19,13 +19,20 @@ export type Project = {
   description: string;
   tags: string[];
   featured?: boolean;
-  gradient: string;
+  /**
+   * List of image paths relative to /public.
+   * images[0] → used as the card / hero background everywhere.
+   * images[1…] → shown in the detail-page carousel.
+   * e.g. ["/projects/greenfield/hero.jpg", "/projects/greenfield/interior.jpg"]
+   */
+  images: string[];
   // Detail-page fields (optional, shown only on /projects/[id])
   client?: string;
   challenge?: string;
   solution?: string;
   highlights?: string[];
 };
+
 export const FILTERS = [
   "All",
   "Residential",
@@ -48,7 +55,12 @@ export const PROJECTS: Project[] = [
       "A landmark 14-story commercial tower in the heart of the city. Designed for mixed office and retail use, Greenfield Tower features floor-to-ceiling glazing, a rooftop terrace, and LEED Gold certification. Delivered on time and under budget.",
     tags: ["LEED Gold", "Mixed-Use", "14 Floors"],
     featured: true,
-    gradient: "linear-gradient(135deg, #0a2a1a 0%, #1a4a2a 50%, #082010 100%)",
+    images: [
+      "/projects/greenfieldtower/OIP-255489127.jpg",
+      "/projects/greenfieldtower/OIP-915353024.jpg",
+      "/projects/greenfieldtower/OIP-1402024472.jpg",
+      "/projects/greenfieldtower/OIP-1994424744.jpg",
+    ],
     client: "Greenfield Properties Ltd.",
     challenge:
       "Constructing a 14-story tower in a dense urban core while maintaining active street-level retail and minimizing disruption to neighboring buildings presented significant logistical and structural challenges.",
@@ -73,7 +85,12 @@ export const PROJECTS: Project[] = [
     description:
       "A boutique residential complex of 24 luxury units overlooking the harbor. Each unit features custom millwork, heated floors, and private balconies. The project required intricate waterfront foundation work.",
     tags: ["Luxury", "24 Units", "Waterfront"],
-    gradient: "linear-gradient(135deg, #0a1a2a 0%, #152535 50%, #05101a 100%)",
+    images: [
+      "/projects/harborview/hero.jpg",
+      "/projects/harborview/balcony.jpg",
+      "/projects/harborview/interior.jpg",
+      "/projects/harborview/foundation.jpg",
+    ],
     client: "Harborview Developments Inc.",
     challenge:
       "Building on a waterfront site with fluctuating tidal conditions required deep piling work and watertight basement construction below the water table.",
@@ -98,7 +115,11 @@ export const PROJECTS: Project[] = [
     description:
       "Full structural restoration of the 1940s Central Bridge, including new concrete decking, updated railing systems, and waterproofing. A technically complex heritage project completed with zero traffic disruption.",
     tags: ["Heritage", "Structural", "Civil"],
-    gradient: "linear-gradient(135deg, #1a1a2a 0%, #2a2040 50%, #0f0f1a 100%)",
+    images: [
+      "/projects/central-bridge/hero.jpg",
+      "/projects/central-bridge/deck.jpg",
+      "/projects/central-bridge/railing.jpg",
+    ],
     client: "City Infrastructure Authority",
     challenge:
       "The 1940s bridge required full structural remediation while remaining open to traffic — a constraint that demanded precision staging and round-the-clock coordination with city transport authorities.",
@@ -123,7 +144,12 @@ export const PROJECTS: Project[] = [
     description:
       "A 95,000 sqft retail destination anchoring the Northgate development. Features an open-air atrium, food hall, and 60+ retail units. Designed for high foot traffic with sustainable energy systems throughout.",
     tags: ["Retail", "Atrium", "60+ Units"],
-    gradient: "linear-gradient(135deg, #2a1a05 0%, #4a3015 50%, #1a0f02 100%)",
+    images: [
+      "/projects/oakwood/hero.jpg",
+      "/projects/oakwood/atrium.jpg",
+      "/projects/oakwood/food-hall.jpg",
+      "/projects/oakwood/exterior.jpg",
+    ],
     client: "Northgate Group",
     challenge:
       "Delivering 95,000 sqft of retail with 60+ individual tenancy fit-outs, each with unique requirements, while hitting a hard grand-opening date set by anchor tenant contracts.",
@@ -148,7 +174,12 @@ export const PROJECTS: Project[] = [
     description:
       "Complete gut renovation of a 1970s family home — new open-plan kitchen, two additional bathrooms, full rewire, and structural wall removal. Transformed into a modern family home while preserving original hardwood floors.",
     tags: ["Residential", "Full Gut", "Modern"],
-    gradient: "linear-gradient(135deg, #1a0a0a 0%, #2a1510 50%, #0a0505 100%)",
+    images: [
+      "/projects/maple/hero.jpg",
+      "/projects/maple/kitchen.jpg",
+      "/projects/maple/bathroom.jpg",
+      "/projects/maple/floors.jpg",
+    ],
     client: "Private Homeowner",
     challenge:
       "A 1970s home with non-compliant original wiring, load-bearing walls in the wrong places, and original hardwood floors the client was determined to preserve presented a complex puzzle.",
@@ -173,7 +204,12 @@ export const PROJECTS: Project[] = [
     description:
       "Three interconnected low-rise office buildings set along the riverside, with shared amenities, underground parking, and extensive landscaping. A campus-style development built for a leading tech employer.",
     tags: ["Campus", "3 Buildings", "Landscaped"],
-    gradient: "linear-gradient(135deg, #082a1a 0%, #0f3a25 50%, #041510 100%)",
+    images: [
+      "/projects/riverside/hero.jpg",
+      "/projects/riverside/bridge.jpg",
+      "/projects/riverside/parkade.jpg",
+      "/projects/riverside/landscaping.jpg",
+    ],
     client: "TechCore Developments",
     challenge:
       "Coordinating three concurrent building structures while managing shared underground parking and a complex interconnecting bridge link required careful sequencing to avoid structural conflicts.",
@@ -198,7 +234,12 @@ export const PROJECTS: Project[] = [
     description:
       "Eight custom villa homes on a hillside site with panoramic views. Each villa was individually designed with private pools, wine cellars, and smart home integration. Complex site logistics managed without delay.",
     tags: ["Custom", "8 Villas", "Smart Home"],
-    gradient: "linear-gradient(135deg, #1a150a 0%, #2a2010 50%, #0f0a05 100%)",
+    images: [
+      "/projects/sunridge/hero.jpg",
+      "/projects/sunridge/pool.jpg",
+      "/projects/sunridge/interior.jpg",
+      "/projects/sunridge/view.jpg",
+    ],
     client: "Sunridge Estate Holdings",
     challenge:
       "A steep hillside site with variable rock ledges required individual cut-and-fill solutions for each of the eight villa pads, while single-lane access constrained material deliveries.",
@@ -223,7 +264,12 @@ export const PROJECTS: Project[] = [
     description:
       "Design-build of a new metro rail station serving 40,000 daily commuters. Includes underground concourses, platform shelters, accessibility ramps, and integrated retail kiosks. A flagship public infrastructure project.",
     tags: ["Public", "Transit", "40K Daily"],
-    gradient: "linear-gradient(135deg, #0a0a1a 0%, #15152a 50%, #050510 100%)",
+    images: [
+      "/projects/metro-rail/hero.jpg",
+      "/projects/metro-rail/platform.jpg",
+      "/projects/metro-rail/concourse.jpg",
+      "/projects/metro-rail/kiosks.jpg",
+    ],
     client: "Metro Transit Authority",
     challenge:
       "Building a new underground station while keeping the existing surface rail line operational required working in 4-hour overnight maintenance windows and precise coordination with the transit authority.",
@@ -239,19 +285,6 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-export const TYPE_ACCENT: Record<ProjectType, string> = {
-  Commercial: "#08818d",
-  Residential: "#2d7a4f",
-  Renovation: "#8d4f08",
-  Infrastructure: "#4a4a8d",
-};
-
 export function getProjectById(id: number): Project | undefined {
   return PROJECTS.find((p) => p.id === id);
-}
-
-export function getRelatedProjects(current: Project, limit = 3): Project[] {
-  return PROJECTS.filter(
-    (p) => p.id !== current.id && p.type === current.type,
-  ).slice(0, limit);
 }
