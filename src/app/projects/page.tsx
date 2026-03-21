@@ -191,7 +191,10 @@ export default function ProjectsPage() {
                 i === 0 && activeFilter === "All" ? "sm:col-span-2" : ""
               }`}
               style={{
-                height: i === 0 && activeFilter === "All" ? "380px" : "260px",
+                height:
+                  (i === 0 || i === 1) && activeFilter === "All"
+                    ? "380px"
+                    : "260px",
               }}
             >
               {/* Project image */}

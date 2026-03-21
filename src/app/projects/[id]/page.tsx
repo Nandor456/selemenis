@@ -51,6 +51,8 @@ export default async function ProjectDetailPage({
           src={heroImage}
           alt={project.name}
           fill
+          quality={90}
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -188,7 +190,7 @@ export default async function ProjectDetailPage({
 
             {project.challenge && (
               <section className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#f8fffe]">
-                <div className="bg-white p-6">
+                <div className="bg-[#f8fffe] p-6">
                   <p
                     className="text-[12px] uppercase tracking-[4px] font-bold mb-3"
                     style={{ color: accent }}
@@ -199,7 +201,7 @@ export default async function ProjectDetailPage({
                     {project.challenge}
                   </p>
                 </div>
-                <div className="bg-white p-6">
+                <div className="bg-[#f8fffe] p-6">
                   <p
                     className="text-[12px] uppercase tracking-[4px] font-bold mb-3"
                     style={{ color: accent }}
@@ -223,7 +225,10 @@ export default async function ProjectDetailPage({
                 </p>
                 <ul className="space-y-px">
                   {project.highlights.map((hl, i) => (
-                    <li key={i} className="flex items-start gap-4 bg-white p-4">
+                    <li
+                      key={i}
+                      className="flex items-start gap-4 bg-[#f8fffe] p-4"
+                    >
                       <span
                         className="shrink-0 mt-0.5 w-5 h-5 flex items-center justify-center text-[10px] font-black text-white"
                         style={{ backgroundColor: accent }}
@@ -239,7 +244,7 @@ export default async function ProjectDetailPage({
           </div>
 
           {/* Sidebar */}
-          <div className="bg-white p-8 lg:p-10 space-y-8 rounded-xl">
+          <div className="bg-[#f8fffe] p-8 lg:p-10 space-y-8 rounded-xl">
             <div>
               <p
                 className="text-[9px] uppercase tracking-[5px] font-bold mb-5"

@@ -45,21 +45,20 @@ export type Filter = (typeof FILTERS)[number];
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    name: "Greenfield Tower",
-    location: "Downtown Metro",
+    name: "Fallingwater",
+    location: "Stewart Township",
     type: "Commercial",
     year: 2024,
-    sqft: "42,000 sqft",
+    sqft: "41,000 sqft",
     duration: "18 months",
     description:
-      "A landmark 14-story commercial tower in the heart of the city. Designed for mixed office and retail use, Greenfield Tower features floor-to-ceiling glazing, a rooftop terrace, and LEED Gold certification. Delivered on time and under budget.",
-    tags: ["LEED Gold", "Mixed-Use", "14 Floors"],
+      "Fallingwater is a house museum in Stewart Township in the Laurel Highlands of southwestern Pennsylvania, United States. Designed by the architect Frank Lloyd Wright, it is built partly over a waterfall on the Bear Run stream.",
+    tags: ["modern", "wood", "2 Floors"],
     featured: true,
     images: [
-      "/projects/greenfieldtower/OIP-255489127.jpg",
-      "/projects/greenfieldtower/OIP-915353024.jpg",
-      "/projects/greenfieldtower/OIP-1402024472.jpg",
-      "/projects/greenfieldtower/OIP-1994424744.jpg",
+      "/projects/fallingwater/ed64608e32447d7348e12405e2079680-746886101.jpg",
+      "/projects/fallingwater/Fallingwater-scaled-2729267768.jpg",
+      "/projects/fallingwater/IMG_8524-3019686480.jpg",
     ],
     client: "Greenfield Properties Ltd.",
     challenge:
@@ -76,7 +75,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    name: "Harborview Residences",
+    name: "Villa Savoye",
     location: "Eastside District",
     type: "Residential",
     year: 2023,
@@ -86,10 +85,9 @@ export const PROJECTS: Project[] = [
       "A boutique residential complex of 24 luxury units overlooking the harbor. Each unit features custom millwork, heated floors, and private balconies. The project required intricate waterfront foundation work.",
     tags: ["Luxury", "24 Units", "Waterfront"],
     images: [
-      "/projects/harborview/hero.jpg",
-      "/projects/harborview/balcony.jpg",
-      "/projects/harborview/interior.jpg",
-      "/projects/harborview/foundation.jpg",
+      "/projects/villasavoye/OIP-1223168858.jpg",
+      "/projects/villasavoye/OIP-3670510753.jpg",
+      "/projects/villasavoye/OIP-3700376893.jpg",
     ],
     client: "Harborview Developments Inc.",
     challenge:
@@ -106,8 +104,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 3,
-    name: "Central Bridge Restoration",
-    location: "City Center",
+    name: "Glass House",
+    location: "New Canaan",
     type: "Infrastructure",
     year: 2023,
     sqft: "8,200 sqft",
@@ -116,9 +114,9 @@ export const PROJECTS: Project[] = [
       "Full structural restoration of the 1940s Central Bridge, including new concrete decking, updated railing systems, and waterproofing. A technically complex heritage project completed with zero traffic disruption.",
     tags: ["Heritage", "Structural", "Civil"],
     images: [
-      "/projects/central-bridge/hero.jpg",
-      "/projects/central-bridge/deck.jpg",
-      "/projects/central-bridge/railing.jpg",
+      "/projects/glasshouse/OIP-2840878237.jpg",
+      "/projects/glasshouse/OIP-4165848205.jpg",
+      "/projects/glasshouse/OIP-3203390457.jpg",
     ],
     client: "City Infrastructure Authority",
     challenge:
@@ -135,7 +133,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 4,
-    name: "Oakwood Shopping Mall",
+    name: "White House",
     location: "Northgate",
     type: "Commercial",
     year: 2022,
@@ -145,10 +143,9 @@ export const PROJECTS: Project[] = [
       "A 95,000 sqft retail destination anchoring the Northgate development. Features an open-air atrium, food hall, and 60+ retail units. Designed for high foot traffic with sustainable energy systems throughout.",
     tags: ["Retail", "Atrium", "60+ Units"],
     images: [
-      "/projects/oakwood/hero.jpg",
-      "/projects/oakwood/atrium.jpg",
-      "/projects/oakwood/food-hall.jpg",
-      "/projects/oakwood/exterior.jpg",
+      "/projects/whitehouse/OIP-3761624229.jpg",
+      "/projects/whitehouse/OIP-1156041605.jpg",
+      "/projects/whitehouse/OIP-553586373.jpg",
     ],
     client: "Northgate Group",
     challenge:
@@ -165,7 +162,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 5,
-    name: "The Maple Renovation",
+    name: "Hearts Castle",
     location: "Westwood",
     type: "Renovation",
     year: 2024,
@@ -175,10 +172,9 @@ export const PROJECTS: Project[] = [
       "Complete gut renovation of a 1970s family home — new open-plan kitchen, two additional bathrooms, full rewire, and structural wall removal. Transformed into a modern family home while preserving original hardwood floors.",
     tags: ["Residential", "Full Gut", "Modern"],
     images: [
-      "/projects/maple/hero.jpg",
-      "/projects/maple/kitchen.jpg",
-      "/projects/maple/bathroom.jpg",
-      "/projects/maple/floors.jpg",
+      "/projects/hearstcastle/hearst-castle-2022-7223-13-l1200-3090761985.jpg",
+      "/projects/hearstcastle/OIP-2120410535.jpg",
+      "/projects/hearstcastle/OIP-3345107925.jpg",
     ],
     client: "Private Homeowner",
     challenge:
@@ -195,7 +191,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 6,
-    name: "Riverside Office Park",
+    name: "Winchester Mystery House",
     location: "South End",
     type: "Commercial",
     year: 2022,
@@ -205,10 +201,10 @@ export const PROJECTS: Project[] = [
       "Three interconnected low-rise office buildings set along the riverside, with shared amenities, underground parking, and extensive landscaping. A campus-style development built for a leading tech employer.",
     tags: ["Campus", "3 Buildings", "Landscaped"],
     images: [
-      "/projects/riverside/hero.jpg",
-      "/projects/riverside/bridge.jpg",
-      "/projects/riverside/parkade.jpg",
-      "/projects/riverside/landscaping.jpg",
+      "/projects/winchestermysteryhouse/OIP-100504097.jpg",
+      "/projects/winchestermysteryhouse/OIP-1483725009.jpg",
+      "/projects/winchestermysteryhouse/OIP-2741249031.jpg",
+      "/projects/winchestermysteryhouse/OIP-4183074816.jpg",
     ],
     client: "TechCore Developments",
     challenge:
@@ -225,7 +221,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 7,
-    name: "Sunridge Villas",
+    name: "Villa Rotonda",
     location: "Hillcrest",
     type: "Residential",
     year: 2021,
@@ -235,10 +231,9 @@ export const PROJECTS: Project[] = [
       "Eight custom villa homes on a hillside site with panoramic views. Each villa was individually designed with private pools, wine cellars, and smart home integration. Complex site logistics managed without delay.",
     tags: ["Custom", "8 Villas", "Smart Home"],
     images: [
-      "/projects/sunridge/hero.jpg",
-      "/projects/sunridge/pool.jpg",
-      "/projects/sunridge/interior.jpg",
-      "/projects/sunridge/view.jpg",
+      "/projects/villarotonda/OIP-1044148589.jpg",
+      "/projects/villarotonda/OIP-2139347811.jpg",
+      "/projects/villarotonda/OIP-3671064177.jpg",
     ],
     client: "Sunridge Estate Holdings",
     challenge:
@@ -255,7 +250,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 8,
-    name: "Metro Rail Station",
+    name: "Maison Louis Carré",
     location: "Transit Hub",
     type: "Infrastructure",
     year: 2023,
@@ -265,10 +260,10 @@ export const PROJECTS: Project[] = [
       "Design-build of a new metro rail station serving 40,000 daily commuters. Includes underground concourses, platform shelters, accessibility ramps, and integrated retail kiosks. A flagship public infrastructure project.",
     tags: ["Public", "Transit", "40K Daily"],
     images: [
-      "/projects/metro-rail/hero.jpg",
-      "/projects/metro-rail/platform.jpg",
-      "/projects/metro-rail/concourse.jpg",
-      "/projects/metro-rail/kiosks.jpg",
+      "/projects/maisonlouiscarré/OIP-1195943845.jpg",
+      "/projects/maisonlouiscarré/OIP-2684874697.jpg",
+      "/projects/maisonlouiscarré/OIP-2755934011.jpg",
+      "/projects/maisonlouiscarré/OIP-4077710005.jpg",
     ],
     client: "Metro Transit Authority",
     challenge:

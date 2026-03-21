@@ -14,7 +14,7 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
   return (
     <section>
       <p
-        className="text-[10px] uppercase tracking-[5px] mb-5 font-bold"
+        className="text-[60px] uppercase tracking-[5px] mt-5 mb-5 font-bold"
         style={{ color: "#08818d" }}
       >
         {t.carousel.title}
@@ -35,6 +35,8 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
               src={src}
               alt={`${name} - ${t.carousel.imageAlt} ${i + 1}`}
               fill
+              quality={90}
+              sizes="100vw"
               className="object-cover"
             />
           </div>
@@ -89,6 +91,8 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
                 src={src}
                 alt={`${name} ${t.carousel.thumbnailAlt} ${i + 1}`}
                 fill
+                quality={75}
+                sizes="(max-width: 640px) 25vw, 15vw"
                 className="object-cover"
               />
               {i === current && (
