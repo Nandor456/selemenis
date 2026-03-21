@@ -38,11 +38,11 @@ const Header = () => {
         </div>
 
         {/* ── DESKTOP NAV ── */}
-        <nav className="hidden md:flex items-center gap-1 text-sm font-medium ml-auto">
+        <nav className="hidden md:flex items-center gap-3 text-sm font-medium ml-auto">
           <select
             value={locale}
             onChange={(e) => handleLocaleChange(e.target.value)}
-            className="ml-2 bg-[#0A2E31] border border-[#2ABFCC]/30 text-[#2ABFCC] text-xs uppercase tracking-[2px] px-2 py-1.5 outline-none"
+            className="bg-[#0A2E31] border border-[#2ABFCC]/30 text-[#2ABFCC] text-xs uppercase tracking-[2px] outline-none"
             aria-label={t.common.language}
           >
             {locales.map((item) => (
@@ -51,21 +51,16 @@ const Header = () => {
               </option>
             ))}
           </select>
-          {[{ href: "/projects", label: t.header.projects }].map(
-            ({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="px-4 py-2 text-[#2ABFCC]/70 tracking-wide uppercase text-xs font-semibold transition-all duration-200 hover:text-[#2ABFCC] hover:bg-[#2ABFCC]/10"
-              >
-                {label}
-              </Link>
-            ),
-          )}
+          <Link
+            href="/projects"
+            className="px-4 py-2 text-[#2ABFCC]/70 tracking-wide uppercase text-xs font-semibold transition-all duration-200 hover:text-[#2ABFCC] hover:bg-[#2ABFCC]/10"
+          >
+            {t.header.projects}
+          </Link>
 
           <Link
             href="/contact"
-            className="ml-4 px-5 py-2 bg-[#2ABFCC] text-[#0D3D40] text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0"
+            className="px-5 py-2 bg-[#2ABFCC] text-[#0D3D40] text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0"
             style={{
               clipPath:
                 "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))",
