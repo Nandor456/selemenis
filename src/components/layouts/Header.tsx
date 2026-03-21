@@ -20,9 +20,9 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#2ABFCC]/20 bg-[#041517] shadow-lg shadow-black/30">
-      <div className="container flex h-16 items-center">
+      <div className="flex justify-between h-16 items-center">
         {/* ── LOGO ── */}
-        <div className="mr-4 ml-4 flex">
+        <div className="ml-10 flex">
           <Link
             href="/"
             className="flex items-center space-x-2 cursor-pointer select-none"
@@ -60,7 +60,7 @@ const Header = () => {
 
           <Link
             href="/contact"
-            className="px-5 py-2 bg-[#2ABFCC] text-[#0D3D40] text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0"
+            className="mr-10 px-5 py-2 bg-[#2ABFCC] text-[#0D3D40] text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0"
             style={{
               clipPath:
                 "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))",
