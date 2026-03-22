@@ -5,7 +5,6 @@ import { useGLTF, useProgress } from "@react-three/drei";
 import { useEffect, useRef, Suspense } from "react";
 import * as THREE from "three";
 
-// 1. Add props interface to accept the callback
 interface ModelProps {
   onLoaded?: () => void;
 }
@@ -36,9 +35,9 @@ function Model() {
     }
   });
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (ref.current) {
-      ref.current.rotation.y += 0.003;
+      ref.current.rotation.y += delta * 0.5;
     }
   });
 

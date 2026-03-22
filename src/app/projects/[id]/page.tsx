@@ -60,15 +60,6 @@ export default async function ProjectDetailPage({
         <div className="absolute inset-0 bg-black/55" />
         {/* Grid overlay */}
         <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(90deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 32px),
-              repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 32px)
-            `,
-          }}
-        />
-        <div
           className="pointer-events-none absolute -top-20 -right-20 h-96 w-96 rounded-full blur-[120px] opacity-20"
           style={{ backgroundColor: accent }}
         />
@@ -83,10 +74,10 @@ export default async function ProjectDetailPage({
         </div>
 
         <div className="relative z-10 container mx-auto px-6 pb-16 pt-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="flex flex-col gap-8">
             <div>
               <span
-                className="inline-block px-3 py-1 text-[10px] uppercase tracking-[4px] font-bold text-white mb-4"
+                className="px-3 py-1 text-[10px] uppercase tracking-[4px] font-bold text-white mb-4"
                 style={{ backgroundColor: accent }}
               >
                 {typeLabel[project.type]}
@@ -114,7 +105,7 @@ export default async function ProjectDetailPage({
               </div>
             </div>
 
-            <div className="flex gap-6 shrink-0">
+            <div className="flex md:gap-6 gap-4">
               {[
                 {
                   label: t.projectDetail.area,
@@ -134,7 +125,7 @@ export default async function ProjectDetailPage({
               ].map(({ label, value, icon }) => (
                 <div
                   key={label}
-                  className="flex flex-col items-center text-center border border-white/10 px-5 py-4 backdrop-blur-sm bg-white/5"
+                  className="flex flex-col justify-center items-center text-center border border-white/10 md:px-5 px-2 md:py-4 py-2 backdrop-blur-sm bg-white/5"
                   style={{
                     clipPath:
                       "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))",
@@ -142,7 +133,7 @@ export default async function ProjectDetailPage({
                 >
                   <span className="text-white/30 mb-2">{icon}</span>
                   <span
-                    className="text-2xl font-black text-white tracking-wider"
+                    className="md:text-2xl text-xl font-black text-white tracking-wider"
                     style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                   >
                     {value}
