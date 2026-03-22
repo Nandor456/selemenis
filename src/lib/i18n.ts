@@ -2,7 +2,7 @@ export const SUPPORTED_LOCALES = ["en", "hu", "ro"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
-export const DEFAULT_LOCALE: Locale = "en";
+export const DEFAULT_LOCALE: Locale = "hu";
 
 export function isLocale(value: string): value is Locale {
   return SUPPORTED_LOCALES.includes(value as Locale);
@@ -326,8 +326,8 @@ export const TRANSLATIONS: Record<Locale, TranslationSchema> = {
     },
     home: {
       eyebrow: "\u00c9p\u00edt\u00e9s \u00e9s fejleszt\u00e9s",
-      titleTop: "\u00c9p\u00edt\u00fcnk",
-      titleAccent: "\u00d6r\u00f6mmel",
+      titleTop: "\u00d6r\u00f6mmel",
+      titleAccent: "\u00c9p\u00edt\u00fcnk",
       subtitle:
         "Min\u0151s\u00e9gi kivitelez\u00e9s \u00b7 Megb\u00edzhat\u00f3 szak\u00e9rtelem \u00b7 \u00c9letre tervezve",
       explore: "Munk\u00e1ink megtekint\u00e9se",

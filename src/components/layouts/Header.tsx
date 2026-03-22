@@ -20,9 +20,9 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#2ABFCC]/20 bg-[#041517] shadow-lg shadow-black/30">
-      <div className="container flex h-16 items-center">
+      <div className="flex justify-between h-16 items-center">
         {/* ── LOGO ── */}
-        <div className="mr-4 ml-4 flex">
+        <div className="md:ml-10 ml-4 flex">
           <Link
             href="/"
             className="flex items-center space-x-2 cursor-pointer select-none"
@@ -60,7 +60,7 @@ const Header = () => {
 
           <Link
             href="/contact"
-            className="px-5 py-2 bg-[#2ABFCC] text-[#0D3D40] text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0"
+            className="mr-10 px-5 py-2 bg-[#2ABFCC] text-[#0D3D40] text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0"
             style={{
               clipPath:
                 "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))",
@@ -72,7 +72,7 @@ const Header = () => {
 
         {/* ── MOBILE MENU TRIGGER ── */}
         <button
-          className="ml-auto md:hidden p-2 text-[#2ABFCC]/80 hover:text-[#2ABFCC] transition-colors"
+          className="md:hidden p-2 text-[#2ABFCC]/80 hover:text-[#2ABFCC] transition-colors"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={t.header.toggleMenu}
         >
@@ -101,18 +101,21 @@ const Header = () => {
             <label className="block py-2 text-xs font-semibold uppercase tracking-widest text-[#2ABFCC]/60">
               {t.common.language}
             </label>
-            <select
-              value={locale}
-              onChange={(e) => handleLocaleChange(e.target.value)}
-              className="w-full bg-[#041517] border border-[#2ABFCC]/30 text-[#2ABFCC] text-xs uppercase tracking-[2px] px-3 py-2 outline-none"
-              aria-label={t.common.language}
-            >
+            <div className="flex gap-2">
               {locales.map((item) => (
-                <option key={item} value={item}>
+                <button
+                  key={item}
+                  onClick={() => handleLocaleChange(item)}
+                  className={`flex-1 py-2 text-xs font-bold uppercase tracking-[3px] border transition-all duration-200 ${
+                    locale === item
+                      ? "bg-[#2ABFCC] border-[#2ABFCC] text-[#041517]"
+                      : "bg-transparent border-[#2ABFCC]/30 text-[#2ABFCC]/50 hover:border-[#2ABFCC]/60 hover:text-[#2ABFCC]"
+                  }`}
+                >
                   {getTranslations(item).languageName}
-                </option>
+                </button>
               ))}
-            </select>
+            </div>
           </div>
         </div>
       )}
