@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, RefObject } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
-interface Project {
+interface AboutFirmProps {
   title: string;
   description: string;
   image: string;
@@ -38,20 +38,21 @@ function useInView(
 }
 
 // ─── Single project row ───────────────────────────────────────────────────────
-interface ProjectRowProps {
-  item: Project;
+interface AboutRowProps {
+  item: AboutFirmProps;
   index: number;
 }
 
-const ProjectRow = ({ item, index }: ProjectRowProps) => {
+const AboutRow = ({ item, index }: AboutRowProps) => {
   const isEven = index % 2 === 0;
   const [ref, visible] = useInView(0.2);
 
   return (
     <div
       ref={ref}
-      className="relative flex flex-col md:flex-row items-stretch min-h-[480px] overflow-hidden"
-      style={{ flexDirection: isEven ? "row" : "row-reverse" }}
+      className={`relative flex flex-col items-stretch min-h-[480px] overflow-hidden ${
+        isEven ? "md:flex-row" : "md:flex-row-reverse"
+      }`}
     >
       {/* ── Image panel ── */}
       <div
@@ -181,7 +182,7 @@ const Divider = () => (
   </div>
 );
 
-const PROJECTS: Project[] = [
+const About: AboutFirmProps[] = [
   {
     title: "Holder1",
     description:
@@ -263,10 +264,10 @@ const ScrollSection = () => {
     <section className="bg-[#1C1C1E] w-full">
       <SectionHeader />
 
-      {PROJECTS.map((item, i) => (
+      {About.map((item, i) => (
         <div key={item.title}>
-          <ProjectRow item={item} index={i} />
-          {i < PROJECTS.length - 1 && <Divider />}
+          <AboutRow item={item} index={i} />
+          {i < About.length - 1 && <Divider />}
         </div>
       ))}
 
