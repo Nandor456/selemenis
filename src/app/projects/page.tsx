@@ -94,7 +94,7 @@ export default function ProjectsPage() {
               `,
             }}
           />
-          <div className="relative z-10 container mx-auto px-6 py-16 flex flex-col md:flex-row items-start md:items-center gap-10 justify-between">
+          <div className="relative z-10 container mx-auto px-6 py-16 flex flex-col md:flex-row items-start md:items-center gap-10">
             <div>
               <p className="text-xs uppercase tracking-[5px] text-[#08818d] mb-3 font-bold">
                 ★ {t.projectsPage.featured}
@@ -118,20 +118,27 @@ export default function ProjectsPage() {
               </p>
             </div>
             {/* Stats */}
-            <div className="flex gap-8 shrink-0">
+            <div className="flex md:gap-6 gap-4">
               {[
                 { label: t.projectsPage.area, value: featured.sqft },
                 { label: t.projectsPage.duration, value: featured.duration },
                 { label: t.projectsPage.year, value: String(featured.year) },
               ].map(({ label, value }) => (
-                <div key={label} className="flex flex-col items-center">
+                <div
+                  key={label}
+                  className="flex flex-col justify-center items-center text-center border border-white/10 md:px-5 px-2 md:py-4 py-2 backdrop-blur-sm bg-white/5"
+                  style={{
+                    clipPath:
+                      "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))",
+                  }}
+                >
                   <span
-                    className="text-3xl font-black text-white tracking-wider"
+                    className="md:text-2xl text-xl font-black text-white tracking-wider"
                     style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                   >
                     {value}
                   </span>
-                  <span className="text-[10px] uppercase tracking-[3px] text-white/30 mt-1">
+                  <span className="text-[9px] uppercase tracking-[3px] text-white/30 mt-1">
                     {label}
                   </span>
                 </div>

@@ -14,7 +14,7 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
   return (
     <section>
       <p
-        className="md:text-[60px] text-[20px] uppercase tracking-[5px] mt-5 mb-5 font-bold"
+        className="md:text-[40px] text-[20px] uppercase tracking-[5px] mt-5 mb-5 font-bold"
         style={{ color: "#08818d" }}
       >
         {t.carousel.title}

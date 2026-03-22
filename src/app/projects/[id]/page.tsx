@@ -77,7 +77,7 @@ export default async function ProjectDetailPage({
           <div className="flex flex-col gap-8">
             <div>
               <span
-                className="px-3 py-1 text-[10px] uppercase tracking-[4px] font-bold text-white mb-4"
+                className="px-6 py-1 text-[14px] uppercase tracking-[8px] font-bold text-white mb-4 inline-block"
                 style={{ backgroundColor: accent }}
               >
                 {typeLabel[project.type]}
@@ -105,7 +105,7 @@ export default async function ProjectDetailPage({
               </div>
             </div>
 
-            <div className="flex md:gap-6 gap-4">
+            <div className="flex justify-end md:gap-6 gap-4">
               {[
                 {
                   label: t.projectDetail.area,
