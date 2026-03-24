@@ -43,12 +43,12 @@ const Home = () => {
 
         {/* Tagline */}
         <div className="flex flex-col items-center gap-4">
-          <p className="font-mono text-xs uppercase tracking-[6px] text-[#08818d]">
+          <p className="font-mono text-xs md:text-xl lg:text-2xl uppercase tracking-[6px] text-[#08818d]">
             {t.home.eyebrow}
           </p>
 
           <h1
-            className="text-5xl font-black uppercase leading-none tracking-widest text-white md:text-7xl lg:text-8xl"
+            className="text-5xl font-black uppercase leading-none text-white md:text-8xl lg:text-9xl"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
             {t.home.titleTop}
@@ -56,7 +56,7 @@ const Home = () => {
             <span className="text-[#08818d]">{t.home.titleAccent}</span>
           </h1>
 
-          <p className="max-w-md text-sm font-light tracking-[3px] uppercase text-white/40">
+          <p className="text-xs md:text-xl font-light tracking-[2px] uppercase text-white/40">
             {t.home.subtitle}
           </p>
         </div>
@@ -65,7 +65,7 @@ const Home = () => {
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
           <Link href="/projects">
             <button
-              className="bg-[#08818d] px-10 py-4 text-sm font-bold uppercase tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
+              className="bg-[#08818d] px-3 md:px-12 py-4 text-sm md:text-xl font-bold uppercase tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
               style={{
                 clipPath:
                   "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
@@ -85,12 +85,12 @@ const Home = () => {
           ].map(({ num, label }) => (
             <div key={label} className="flex flex-col items-center">
               <span
-                className="text-2xl font-black text-[#08818d]"
+                className="text-2xl md:text-3xl font-black text-[#08818d]"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 {num}
               </span>
-              <span className="text-[10px] uppercase tracking-[3px] text-white/30">
+              <span className="text-xs md:text-xl uppercase tracking-[3px] text-white/30">
                 {label}
               </span>
             </div>

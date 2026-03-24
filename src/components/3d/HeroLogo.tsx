@@ -18,7 +18,7 @@ const HeroLogo = () => {
   }, []);
   return (
     <div
-      className={`h-60 w-full max-w-xs transition-opacity duration-[1000ms] ease-in-out ${
+      className={`h-60 md:h-80 w-full max-w-xs transition-opacity duration-[1000ms] ease-in-out ${
         isLoaded ? "opacity-100" : "opacity-0"
       }`}
     >

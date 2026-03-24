@@ -144,18 +144,18 @@ const SectionHeader = () => {
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center py-24 px-6 text-center"
+      className="flex flex-col items-center py-10 px-6 text-center"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(40px)",
         transition: "opacity 0.7s ease, transform 0.7s ease",
       }}
     >
-      <p className="mb-4 font-mono text-[10px] uppercase tracking-[6px] text-[#08818d]">
+      <p className="mb-4 font-mono text-xs md:text-xl lg:text-2xl uppercase tracking-[6px] text-[#08818d]">
         {t.aboutFirm.eyebrow}
       </p>
       <h2
-        className="mb-4 text-6xl md:text-8xl font-black uppercase leading-none tracking-widest text-white"
+        className="mb-4 text-4xl md:text-6xl lg:text-8xl font-black uppercase leading-none tracking-widest text-white"
         style={{ fontFamily: "'Bebas Neue', sans-serif" }}
       >
         {t.aboutFirm.titleTop}
@@ -164,7 +164,7 @@ const SectionHeader = () => {
       </h2>
       <div className="mt-4 flex items-center gap-4">
         <div className="h-[1px] w-16 bg-white/10" />
-        <p className="text-xs uppercase tracking-[4px] text-white/30">
+        <p className="text-xs md:text-xl lg:text-2xl uppercase tracking-[4px] text-white/30">
           {t.aboutFirm.builtPrecision}
         </p>
         <div className="h-[1px] w-16 bg-white/10" />
@@ -229,23 +229,23 @@ const CtaBand = () => {
         transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
       }}
     >
-      <p className="font-mono text-[10px] uppercase tracking-[6px] text-[#08818d]">
+      <p className="font-mono text-xs md:text-xl lg:text-2xl uppercase tracking-[6px] text-[#08818d]">
         {t.aboutFirm.ready}
       </p>
       <h3
-        className="text-5xl md:text-7xl font-black uppercase leading-none tracking-widest text-white"
+        className="flex flex-col gap-2 text-3xl md:text-5xl lg:text-7xl font-black uppercase leading-none tracking-widest text-white"
         style={{ fontFamily: "'Bebas Neue', sans-serif" }}
       >
         {t.aboutFirm.ctaTop}
         <br />
         <span className="text-[#08818d]">{t.aboutFirm.ctaAccent}</span>
       </h3>
-      <p className="max-w-md text-sm font-light tracking-[2px] uppercase text-white/30">
+      <p className="max-w-md text-sm md:text-xl font-light tracking-[2px] uppercase text-white/30">
         {t.aboutFirm.ctaFooter}
       </p>
       <Link href="/contact">
         <button
-          className="mt-2 bg-[#08818d] px-12 py-5 text-sm font-bold uppercase tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
+          className="mt-2 bg-[#08818d] px-6 md:px-12 py-5 text-sm font-bold uppercase tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
           style={{
             clipPath:
               "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
