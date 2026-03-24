@@ -98,10 +98,10 @@ const Header = () => {
           ))}
 
           <div className="pt-2">
-            <label className="block py-2 text-xs font-semibold uppercase tracking-widest text-[#2ABFCC]/60">
+            <label className="py-2 text-sm font-semibold uppercase tracking-widest text-[#2ABFCC]/60">
               {t.common.language}
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-2 mt-2">
               {locales.map((item) => (
                 <button
                   key={item}
