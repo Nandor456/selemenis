@@ -203,8 +203,6 @@ export default function Footer() {
                   style={{ color: "#7aa5a9" }}
                 >
                   {companyData.address}
-                  <br />
-                  Houston, TX 77002
                 </address>
               </div>
 

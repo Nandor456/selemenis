@@ -4,6 +4,8 @@ import HeroLogo from "@/components/3d/HeroLogo";
 import ScrollSection from "@/components/AboutFirm";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import Beams from "@/components/Beams";
+import ShinyText from "@/components/ShinyText";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -11,28 +13,17 @@ const Home = () => {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E] flex flex-col items-center justify-center">
       {/* ── Background texture grid ── */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              45deg,
-              rgba(255,255,255,0.015) 0px,
-              rgba(255,255,255,0.015) 1px,
-              transparent 1px,
-              transparent 40px
-            )
-          `,
-        }}
-      />
-      {/* ── Building silhouettes ── */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-end justify-around px-12">
-        <div className="h-32 w-28 bg-white/[0.03] border-t border-white/[0.05]" />
-        <div className="h-44 w-16 bg-white/[0.03] border-t border-white/[0.05]" />
-        <div className="h-24 w-36 bg-white/[0.03] border-t border-white/[0.05]" />
-        <div className="h-52 w-12 bg-white/[0.03] border-t border-white/[0.05]" />
-        <div className="h-36 w-24 bg-white/[0.03] border-t border-white/[0.05]" />
-        <div className="h-28 w-20 bg-white/[0.03] border-t border-white/[0.05]" />
+      <div className="absolute inset-0 z-0">
+        <Beams
+          beamWidth={0.5}
+          beamHeight={15}
+          beamNumber={12}
+          lightColor="#08818d"
+          speed={0.5}
+          noiseIntensity={1.75}
+          scale={0.2}
+          rotation={0}
+        />
       </div>
       {/* ── Main content ── */}
       <div
@@ -42,18 +33,28 @@ const Home = () => {
         <HeroLogo />
 
         {/* Tagline */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 mr-5 ml-5">
           <p className="font-mono text-xs md:text-xl lg:text-2xl uppercase tracking-[6px] text-[#08818d]">
             {t.home.eyebrow}
           </p>
 
           <h1
-            className="text-5xl font-black uppercase leading-none text-white md:text-8xl lg:text-9xl"
+            className="flex flex-col gap-2 text-5xl font-black uppercase leading-none tracking-wider text-white md:text-8xl lg:text-9xl"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
             {t.home.titleTop}
-            <br />
-            <span className="text-[#08818d]">{t.home.titleAccent}</span>
+            <ShinyText
+              text={t.home.titleAccent}
+              speed={4}
+              delay={0}
+              color="#08818d"
+              shineColor="#ffffff"
+              spread={20}
+              direction="left"
+              yoyo={false}
+              pauseOnHover={false}
+              disabled={false}
+            />
           </h1>
 
           <p className="text-xs md:text-xl font-light tracking-[2px] uppercase text-white/40">
@@ -98,8 +99,8 @@ const Home = () => {
         </div>
       </div>
       {/* ── Scroll hint ── */}
-      <div className="flex flex-col items-center pt-5.5">
-        <span className="text-[10px] uppercase tracking-[4px] text-white/20">
+      <div className="flex flex-col items-center p-20">
+        <span className="text-xs md:text-xl uppercase tracking-[4px] text-white/20">
           {t.home.scroll}
         </span>
         <div className="mt-5 h-10 w-[1px] bg-gradient-to-b from-[#08818d] to-transparent animate-bounce" />
