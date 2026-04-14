@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E] flex flex-col items-center justify-center px-4 py-6 md:py-0">
+    <section className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E] flex flex-col items-center justify-center py-6 md:py-0">
       {/* ── Background texture grid ── */}
       <div className="hero-fade-in absolute inset-0 z-0">
         <Beams
@@ -37,7 +37,7 @@ const Home = () => {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 flex w-full max-w-5xl flex-col items-center gap-5 md:gap-8 pt-2 md:pt-5 text-center">
+      <div className="relative z-10 flex w-full max-w-5xl flex-col items-center gap-5 px-4 md:gap-8 md:px-6 pt-2 md:pt-5 text-center">
         {/* 3D Logo */}
         <HeroLogo />
 
