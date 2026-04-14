@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useEffect, useRef, useMemo } from 'react';
+import { forwardRef, useImperativeHandle, useEffect, useRef, useMemo, useState } from 'react';
 
 import * as THREE from 'three';
 
@@ -49,11 +49,29 @@ function extendMaterial(BaseMaterial, cfg) {
   return mat;
 }
 
-const CanvasWrapper = ({ children }) => (
-  <Canvas dpr={[1, 2]} frameloop="always" className="beams-container">
-    {children}
-  </Canvas>
-);
+const CanvasWrapper = ({ children }) => {
+  const wrapperRef = useRef(null);
+  const [active, setActive] = useState(true);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setActive(e.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={wrapperRef} style={{ width: '100%', height: '100%' }}>
+      <Canvas dpr={[1, 1.5]} frameloop={active ? 'always' : 'never'} className="beams-container">
+        {children}
+      </Canvas>
+    </div>
+  );
+};
 
 const hexToNormalizedRGB = hex => {
   const clean = hex.replace('#', '');

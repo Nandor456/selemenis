@@ -6,25 +6,36 @@ import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import Beams from "@/components/Beams";
 import ShinyText from "@/components/ShinyText";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const { t } = useLanguage();
 
+  const [isSmall, setIsSmall] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => setIsSmall(window.innerWidth < 640); // Tailwind sm breakpoint
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
+  }, []);
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E] flex flex-col items-center justify-center">
       {/* ── Background texture grid ── */}
-      <div className="absolute inset-0 z-0">
+      <div className="hero-fade-in absolute inset-0 z-0">
         <Beams
-          beamWidth={0.5}
+          beamWidth={isSmall ? 0.1 : 0.5}
           beamHeight={15}
           beamNumber={12}
           lightColor="#08818d"
-          speed={0.5}
+          speed={1}
           noiseIntensity={1.75}
           scale={0.2}
           rotation={0}
         />
       </div>
+
       {/* ── Main content ── */}
       <div
         className={`relative z-10 flex flex-col items-center gap-8 pt-5 text-center`}
