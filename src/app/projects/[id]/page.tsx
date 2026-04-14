@@ -64,7 +64,7 @@ export default async function ProjectDetailPage({
           style={{ backgroundColor: accent }}
         />
 
-        <div className="relative z-10 container mx-auto px-6 pt-8">
+        <div className="relative z-10 container mx-auto px-6 pt-16">
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs uppercase tracking-[4px] font-bold"

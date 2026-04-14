@@ -11,6 +11,19 @@ interface AboutFirmProps {
   image: string;
 }
 
+// ─── useIsDesktop ─────────────────────────────────────────────────────────────
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = () => setIsDesktop(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return isDesktop;
+}
+
 // ─── useInView ────────────────────────────────────────────────────────────────
 function useInView(
   threshold = 0.2,
@@ -123,7 +136,7 @@ const StatPill = ({
         {val}
         {suffix}
       </span>
-      <span className="text-[9px] md:text-[11px] uppercase tracking-[4px] text-white/25">
+      <span className="text-[9px] md:text-[11px] uppercase tracking-[2px] md:tracking-[4px] text-white/25">
         {label}
       </span>
     </div>
@@ -179,7 +192,7 @@ const SectionHeader = () => {
         </span>
       </div>
 
-      <div className="relative flex flex-col items-center overflow-hidden px-6 pt-20 pb-14 text-center">
+      <div className="relative flex flex-col items-center overflow-hidden px-5 md:px-6 pt-14 md:pt-20 pb-10 md:pb-14 text-center">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-12"
@@ -204,7 +217,7 @@ const SectionHeader = () => {
               background: "linear-gradient(to right, transparent, #08818d)",
             }}
           />
-          <p className="font-mono text-[10px] md:text-sm uppercase tracking-[7px] text-[#08818d]">
+          <p className="font-mono text-[9px] md:text-sm uppercase tracking-[3px] md:tracking-[7px] text-[#08818d]">
             {t.aboutFirm.eyebrow}
           </p>
           <div
@@ -253,7 +266,7 @@ const SectionHeader = () => {
 
         {/* Stats */}
         <div
-          className="flex flex-wrap items-center justify-center gap-10 md:gap-16 pt-8 border-t w-full max-w-xl"
+          className="flex flex-wrap items-center justify-center gap-6 md:gap-16 pt-6 md:pt-8 border-t w-full max-w-xl"
           style={{
             borderColor: "rgba(255,255,255,0.06)",
             opacity: visible ? 1 : 0,
@@ -352,13 +365,14 @@ interface AboutRowProps {
 const AboutRow = ({ item, index, total }: AboutRowProps) => {
   const isEven = index % 2 === 0;
   const [ref, visible] = useInView(0.15);
+  const isDesktop = useIsDesktop();
   const d = (s: number) => `${s}s`;
 
   return (
     <div
       ref={ref}
-      className="group relative overflow-hidden"
-      style={{ background: "#0f0f12", minHeight: 540 }}
+      className="group relative overflow-hidden md:min-h-135"
+      style={{ background: "#0f0f12" }}
     >
       {/* Hover scan line */}
       <div
@@ -371,15 +385,17 @@ const AboutRow = ({ item, index, total }: AboutRowProps) => {
       />
 
       <div
-        className={`relative flex flex-col md:flex-row items-stretch min-h-[540px] ${isEven ? "" : "md:flex-row-reverse"}`}
+        className={`relative flex flex-col md:flex-row items-stretch md:min-h-135 ${isEven ? "" : "md:flex-row-reverse"}`}
       >
         {/* ── Image ── */}
         <div
-          className="relative w-full md:w-[57%] overflow-hidden min-h-[320px] md:min-h-0"
+          className="relative w-full md:w-[57%] overflow-hidden min-h-60 md:min-h-0"
           style={{
-            clipPath: isEven
-              ? "polygon(0 0, 100% 0, 91% 100%, 0 100%)"
-              : "polygon(9% 0, 100% 0, 100% 100%, 0 100%)",
+            clipPath: isDesktop
+              ? isEven
+                ? "polygon(0 0, 100% 0, 91% 100%, 0 100%)"
+                : "polygon(9% 0, 100% 0, 100% 100%, 0 100%)"
+              : "none",
             opacity: visible ? 1 : 0,
             transform: visible ? "scale(1)" : "scale(1.07)",
             transition:
@@ -449,7 +465,7 @@ const AboutRow = ({ item, index, total }: AboutRowProps) => {
 
         {/* ── Text ── */}
         <div
-          className={`relative z-10 flex flex-col justify-center w-full md:w-[50%] px-10 md:px-16 py-16 md:py-24 ${isEven ? "md:-ml-[7%]" : "md:-mr-[7%]"}`}
+          className={`relative z-10 flex flex-col justify-center w-full md:w-[50%] px-6 md:px-16 py-10 md:py-24 ${isEven ? "md:-ml-[7%]" : "md:-mr-[7%]"}`}
           style={{
             opacity: visible ? 1 : 0,
             transform: visible
@@ -467,7 +483,7 @@ const AboutRow = ({ item, index, total }: AboutRowProps) => {
               [isEven ? "right" : "left"]: "-5px",
               top: "50%",
               transform: "translateY(-52%)",
-              fontSize: "clamp(120px, 18vw, 200px)",
+              fontSize: "clamp(80px, 18vw, 200px)",
               fontFamily: "'Bebas Neue', sans-serif",
               lineHeight: 1,
               color: "transparent",
@@ -629,7 +645,7 @@ const CtaBand = () => {
   return (
     <div
       ref={ref}
-      className="relative overflow-hidden flex flex-col items-center px-6 py-28 text-center"
+      className="relative overflow-hidden flex flex-col items-center px-6 py-16 md:py-28 text-center"
       style={{ background: "#0c0c0f" }}
     >
       {/* Radial teal spotlight */}
@@ -654,19 +670,19 @@ const CtaBand = () => {
 
       {/* Corner brackets */}
       <div
-        className="pointer-events-none absolute top-8 left-8 w-8 h-8 border-l-2 border-t-2"
+        className="pointer-events-none absolute top-5 left-5 md:top-8 md:left-8 w-6 h-6 md:w-8 md:h-8 border-l-2 border-t-2"
         style={{ borderColor: "rgba(8,129,141,0.3)" }}
       />
       <div
-        className="pointer-events-none absolute top-8 right-8 w-8 h-8 border-r-2 border-t-2"
+        className="pointer-events-none absolute top-5 right-5 md:top-8 md:right-8 w-6 h-6 md:w-8 md:h-8 border-r-2 border-t-2"
         style={{ borderColor: "rgba(8,129,141,0.3)" }}
       />
       <div
-        className="pointer-events-none absolute bottom-8 left-8 w-8 h-8 border-l-2 border-b-2"
+        className="pointer-events-none absolute bottom-5 left-5 md:bottom-8 md:left-8 w-6 h-6 md:w-8 md:h-8 border-l-2 border-b-2"
         style={{ borderColor: "rgba(8,129,141,0.3)" }}
       />
       <div
-        className="pointer-events-none absolute bottom-8 right-8 w-8 h-8 border-r-2 border-b-2"
+        className="pointer-events-none absolute bottom-5 right-5 md:bottom-8 md:right-8 w-6 h-6 md:w-8 md:h-8 border-r-2 border-b-2"
         style={{ borderColor: "rgba(8,129,141,0.3)" }}
       />
 
@@ -681,7 +697,7 @@ const CtaBand = () => {
           }}
         >
           <div className="h-[1px] w-8 bg-[#08818d]" />
-          <p className="font-mono text-[10px] md:text-sm uppercase tracking-[7px] text-[#08818d]">
+          <p className="font-mono text-[9px] md:text-sm uppercase tracking-[3px] md:tracking-[7px] text-[#08818d]">
             {t.aboutFirm.ready}
           </p>
           <div className="h-[1px] w-8 bg-[#08818d]" />
@@ -746,7 +762,7 @@ const CtaBand = () => {
           <Link href="/contact">
             <button
               ref={magnetBtnRef}
-              className="relative group/btn overflow-hidden px-10 md:px-16 py-5 text-sm font-bold uppercase tracking-[4px] text-white transition-shadow duration-300"
+              className="relative group/btn overflow-hidden px-8 md:px-16 py-4 md:py-5 text-xs md:text-sm font-bold uppercase tracking-[2px] md:tracking-[4px] text-white transition-shadow duration-300"
               style={{
                 background: "linear-gradient(135deg, #08818d, #0aa3b0)",
                 clipPath:
