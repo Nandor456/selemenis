@@ -25,12 +25,12 @@ const Home = () => {
       {/* ── Background texture grid ── */}
       <div className="hero-fade-in absolute inset-0 z-0">
         <Beams
-          beamWidth={isSmall ? 0.1 : 0.5}
+          beamWidth={isSmall ? 0.2 : 0.5}
           beamHeight={15}
           beamNumber={12}
           lightColor="#08818d"
           speed={1}
-          noiseIntensity={1.75}
+          noiseIntensity={isSmall ? 0.5 : 1}
           scale={0.2}
           rotation={0}
         />
@@ -109,13 +109,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      {/* ── Scroll hint ── */}
-      <div className="flex flex-col items-center p-20">
-        <span className="text-xs md:text-xl uppercase tracking-[4px] text-white/20">
-          {t.home.scroll}
-        </span>
-        <div className="mt-5 h-10 w-[1px] bg-gradient-to-b from-[#08818d] to-transparent animate-bounce" />
-      </div>
+      <div className="w-full my-8"></div>
       <ScrollSection />
     </section>
   );

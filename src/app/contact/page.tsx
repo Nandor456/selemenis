@@ -78,7 +78,7 @@ function ContactPage() {
       />
 
       {/* ── HERO BANNER ── */}
-      <div className="relative bg-[#08818d] overflow-hidden">
+      <div className="relative bg-[#07555c] overflow-hidden">
         {/* Background grid texture */}
         <div
           className="pointer-events-none absolute inset-0 opacity-10"

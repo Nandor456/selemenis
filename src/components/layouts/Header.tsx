@@ -76,7 +76,7 @@ const Header = () => {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   const contactCta =
-    "relative inline-flex items-center gap-2 bg-[#2ABFCC] text-[#0D3D40] text-[10px] font-bold uppercase tracking-[3px] transition-all duration-300 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0";
+    "relative items-center gap-2 bg-[#2ABFCC] text-[#0D3D40] text-[10px] font-bold uppercase tracking-[3px] transition-all duration-300 hover:bg-[#3DD0DC] hover:-translate-y-px active:translate-y-0";
 
   return (
     <header
@@ -198,7 +198,6 @@ const Header = () => {
               })}
             </div>
           </div>
-
           {/* ── DESKTOP CTA ── */}
           <Link
             href="/contact"

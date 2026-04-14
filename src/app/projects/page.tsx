@@ -37,7 +37,7 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
       {/* ── HERO BANNER ── */}
-      <div className="relative bg-[#08818d] overflow-hidden">
+      <div className="relative bg-[#07555c] overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 opacity-10"
           style={{

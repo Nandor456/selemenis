@@ -179,7 +179,16 @@ const SectionHeader = () => {
         </span>
       </div>
 
-      <div className="relative flex flex-col items-center px-6 pt-20 pb-14 text-center">
+      <div className="relative flex flex-col items-center overflow-hidden px-6 pt-20 pb-14 text-center">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-12"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.03) 35%, rgba(255,255,255,0) 100%)",
+          }}
+        />
+
         {/* Eyebrow */}
         <div
           className="mb-6 flex items-center gap-4"
