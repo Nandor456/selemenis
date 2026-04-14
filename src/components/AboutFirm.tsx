@@ -230,10 +230,9 @@ const SectionHeader = () => {
 
         {/* Title line 1 */}
         <h2
-          className="mb-0 font-black uppercase text-white"
+          className="mb-0 font-black uppercase text-white text-5xl sm:text-6xl md:text-8xl mb-5"
           style={{
             fontFamily: "'Bebas Neue', sans-serif",
-            fontSize: "clamp(3.5rem, 12vw, 10rem)",
             lineHeight: 0.88,
             letterSpacing: "0.05em",
             opacity: visible ? 1 : 0,
@@ -247,10 +246,9 @@ const SectionHeader = () => {
 
         {/* Title line 2 */}
         <h2
-          className="mb-10 font-black uppercase"
+          className="mb-10 font-black uppercase text-5xl sm:text-6xl md:text-8xl"
           style={{
             fontFamily: "'Bebas Neue', sans-serif",
-            fontSize: "clamp(3.5rem, 12vw, 10rem)",
             lineHeight: 0.88,
             letterSpacing: "0.05em",
             color: "#08818d",
@@ -639,7 +637,6 @@ const About: AboutFirmProps[] = [
 // ─── CTA Band ─────────────────────────────────────────────────────────────────
 const CtaBand = () => {
   const [ref, visible] = useInView(0.25);
-  const { areaRef: magnetRef, targetRef: magnetBtnRef } = useMagnet(0.4);
   const { t } = useLanguage();
 
   return (
@@ -749,9 +746,8 @@ const CtaBand = () => {
           {t.aboutFirm.ctaFooter}
         </p>
 
-        {/* Magnetic button */}
+        {/* Glassy button */}
         <div
-          ref={magnetRef}
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(16px)",
@@ -761,25 +757,46 @@ const CtaBand = () => {
         >
           <Link href="/contact">
             <button
-              ref={magnetBtnRef}
-              className="relative group/btn overflow-hidden px-8 md:px-16 py-4 md:py-5 text-xs md:text-sm font-bold uppercase tracking-[2px] md:tracking-[4px] text-white transition-shadow duration-300"
+              className="relative group/btn overflow-hidden px-8 md:px-16 py-4 md:py-5 text-xs md:text-sm font-bold uppercase tracking-[2px] md:tracking-[4px] text-white transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
               style={{
-                background: "linear-gradient(135deg, #08818d, #0aa3b0)",
+                background:
+                  "linear-gradient(135deg, rgba(8,129,141,0.22) 0%, rgba(10,163,176,0.12) 100%)",
+                backdropFilter: "blur(18px)",
+                WebkitBackdropFilter: "blur(18px)",
+                border: "1px solid rgba(8,129,141,0.35)",
                 clipPath:
                   "polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px))",
-                boxShadow: "0 0 30px rgba(8,129,141,0.25)",
-                transition: `transform 0.3s ease, box-shadow 0.3s ease`,
+                boxShadow:
+                  "0 0 30px rgba(8,129,141,0.18), inset 0 1px 0 rgba(255,255,255,0.1)",
               }}
             >
-              {/* Shimmer on hover */}
+              {/* Shimmer sweep on hover */}
               <div
-                className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-in-out"
                 style={{
                   background:
-                    "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 65%)",
+                    "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%)",
                 }}
               />
-              <span className="relative z-10">{t.aboutFirm.ctaButton}</span>
+              {/* Top edge highlight */}
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-[1px]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
+                }}
+              />
+              {/* Bottom edge glow */}
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-[1px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(8,129,141,0.6), transparent)",
+                }}
+              />
+              <span className="relative z-10 drop-shadow-[0_0_8px_rgba(8,129,141,0.5)]">
+                {t.aboutFirm.ctaButton}
+              </span>
             </button>
           </Link>
         </div>

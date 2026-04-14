@@ -75,13 +75,38 @@ const Home = () => {
         <div className="flex flex-wrap items-center justify-center gap-4 pt-1 md:pt-2">
           <Link href="/projects">
             <button
-              className="bg-[#08818d] px-8 md:px-12 py-3 md:py-4 text-xs md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a9c9f] active:translate-y-0"
+              className="group/btn relative overflow-hidden px-8 md:px-12 py-3 md:py-4 text-xs md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px] text-white transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
               style={{
+                background:
+                  "linear-gradient(135deg, rgba(8,129,141,0.25) 0%, rgba(10,163,176,0.15) 100%)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                border: "1px solid rgba(8,129,141,0.35)",
+                boxShadow:
+                  "0 0 20px rgba(8,129,141,0.15), inset 0 1px 0 rgba(255,255,255,0.08)",
                 clipPath:
                   "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
               }}
             >
-              {t.home.explore}
+              {/* Shimmer sweep on hover */}
+              <div
+                className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-in-out"
+                style={{
+                  background:
+                    "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.14) 50%, transparent 70%)",
+                }}
+              />
+              {/* Top edge highlight */}
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-[1px]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)",
+                }}
+              />
+              <span className="relative z-10 drop-shadow-[0_0_8px_rgba(8,129,141,0.5)]">
+                {t.home.explore}
+              </span>
             </button>
           </Link>
         </div>
