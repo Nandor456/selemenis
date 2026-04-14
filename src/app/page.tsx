@@ -85,27 +85,6 @@ const Home = () => {
             </button>
           </Link>
         </div>
-
-        {/* Trust pills */}
-        <div className="flex flex-wrap items-start justify-center gap-x-5 gap-y-3 md:gap-6 pt-2 md:pt-4 text-center">
-          {[
-            { num: "20+", label: t.home.years },
-            { num: "500+", label: t.home.projects },
-            { num: "100%", label: t.home.satisfaction },
-          ].map(({ num, label }) => (
-            <div key={label} className="flex flex-col items-center gap-0.5">
-              <span
-                className="text-xl md:text-3xl font-black text-[#08818d]"
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-              >
-                {num}
-              </span>
-              <span className="text-[9px] sm:text-[10px] md:text-xl uppercase tracking-[2px] md:tracking-[3px] text-white/30">
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
       <div className="w-full my-4 md:my-8" />
       <ScrollSection />
