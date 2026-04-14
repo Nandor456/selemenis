@@ -74,6 +74,7 @@ export default function Footer() {
                 alt="Company Logo"
                 width={300}
                 height={40}
+                quality={95}
                 priority
               />
             </div>

@@ -117,6 +117,7 @@ const Header = () => {
             alt="Company Logo"
             width={120}
             height={40}
+            quality={95}
             priority
             className="relative transition-transform duration-300 group-hover:scale-[1.03]"
           />

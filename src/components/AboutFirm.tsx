@@ -67,49 +67,6 @@ function useCounter(target: number, active: boolean, duration = 1800) {
   return val;
 }
 
-// ─── useMagnet ────────────────────────────────────────────────────────────────
-function useMagnet(strength = 0.35): {
-  areaRef: RefObject<HTMLDivElement | null>;
-  targetRef: RefObject<HTMLButtonElement | null>;
-} {
-  const areaRef = useRef<HTMLDivElement>(null);
-  const targetRef = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    const area = areaRef.current;
-    if (!area) return;
-    let raf = 0;
-    let x = 0;
-    let y = 0;
-    const apply = () => {
-      raf = 0;
-      const target = targetRef.current;
-      if (target) target.style.transform = `translate(${x}px, ${y}px)`;
-    };
-    const schedule = () => {
-      if (!raf) raf = requestAnimationFrame(apply);
-    };
-    const onMove = (e: MouseEvent) => {
-      const r = area.getBoundingClientRect();
-      x = (e.clientX - r.left - r.width / 2) * strength;
-      y = (e.clientY - r.top - r.height / 2) * strength;
-      schedule();
-    };
-    const onLeave = () => {
-      x = 0;
-      y = 0;
-      schedule();
-    };
-    area.addEventListener("mousemove", onMove);
-    area.addEventListener("mouseleave", onLeave);
-    return () => {
-      area.removeEventListener("mousemove", onMove);
-      area.removeEventListener("mouseleave", onLeave);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [strength]);
-  return { areaRef, targetRef };
-}
-
 // ─── Stat pill ────────────────────────────────────────────────────────────────
 const StatPill = ({
   num,

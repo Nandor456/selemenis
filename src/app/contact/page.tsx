@@ -1,11 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useMutation } from "@tanstack/react-query";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ArrowUpRight,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 import companyData from "@/lib/companyData";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
@@ -17,7 +25,7 @@ type FormInput = {
   message: string;
 };
 
-const contactPageBackground = "#f8fffe";
+const ACCENT = "#08818d";
 
 async function sendEmail(formData: FormInput) {
   const response = await fetch("/api/email", {
@@ -31,10 +39,6 @@ async function sendEmail(formData: FormInput) {
 
 function ContactPage() {
   const { t } = useLanguage();
-
-  const pageStyle: React.CSSProperties & { "--contact-page-bg": string } = {
-    "--contact-page-bg": contactPageBackground,
-  };
 
   const mutation = useMutation({
     mutationFn: sendEmail,
@@ -57,154 +61,204 @@ function ContactPage() {
     });
   }
 
-  return (
-    <div
-      className="relative min-h-screen w-full overflow-hidden bg-[#1C1C1E]"
-      style={pageStyle}
-    >
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              45deg,
-              rgba(255,255,255,0.015) 0px,
-              rgba(255,255,255,0.015) 1px,
-              transparent 1px,
-              transparent 40px
-            )
-          `,
-        }}
-      />
+  const inputClasses =
+    "mt-2 w-full rounded-none border border-white/10 bg-white/3 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors duration-300 focus:outline-none focus:border-[#08818d] focus:bg-white/5";
 
-      {/* ── HERO BANNER ── */}
-      <div className="relative bg-[#07555c] overflow-hidden">
-        {/* Background grid texture */}
+  const labelClasses =
+    "text-[10px] uppercase tracking-[3px] text-white/50 font-bold";
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden">
+        {/* Accent glow */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-10"
+          aria-hidden
+          className="pointer-events-none absolute -top-40 -right-40 h-125 w-125 rounded-full blur-[140px] opacity-25"
+          style={{ backgroundColor: ACCENT }}
+        />
+        {/* Grid texture */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.035]"
           style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px,
-              transparent 1px, transparent 36px
-            )`,
+            backgroundImage: `
+              repeating-linear-gradient(90deg, rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 80px),
+              repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 80px)
+            `,
           }}
         />
-        <div className="relative z-10 container mx-auto px-6 py-20 md:py-28">
-          <p className="text-xs uppercase tracking-[5px] text-[#f8fffe]/50 mb-3 font-semibold">
-            {t.contactPage.eyebrow}
-          </p>
+
+        <div className="relative z-10 container mx-auto px-6 pt-20 pb-16 md:pt-28 md:pb-24">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-px w-10 bg-[#08818d]" />
+            <p className="text-[10px] md:text-[11px] uppercase tracking-[5px] md:tracking-[6px] font-bold text-[#08818d]">
+              {t.contactPage.eyebrow}
+            </p>
+          </div>
+
           <h1
-            className="text-5xl md:text-7xl font-black uppercase tracking-wider text-[#f8fffe] leading-none mb-4"
+            className="text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-wider text-white leading-[0.9]"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
             {t.contactPage.titleTop}
             <br />
-            <span className="text-[#f8fffe]/30">
-              {t.contactPage.titleAccent}
-            </span>
+            <span className="text-white/25">{t.contactPage.titleAccent}</span>
           </h1>
-          <p className="text-[#f8fffe]/60 text-sm tracking-widest uppercase max-w-md">
+
+          <p className="mt-8 text-white/50 text-xs md:text-sm tracking-[4px] uppercase max-w-xl">
             {t.contactPage.subtitle}
           </p>
         </div>
-      </div>
+      </section>
 
       {/* ── MAIN CONTENT ── */}
-      <div className="container mx-auto px-6 py-16 md:py-24">
-        <div className="grid md:grid-cols-5 gap-12 items-start max-w-6xl mx-auto">
+      <div className="relative container mx-auto px-6 pb-20 md:pb-28">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start max-w-7xl mx-auto">
           {/* ── LEFT: Info panel ── */}
-          <div className="md:col-span-2 flex flex-col gap-6">
-            <div>
-              <h2
-                className="text-3xl font-black uppercase tracking-wider text-[#08818d] mb-2"
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-              >
+          <aside className="lg:col-span-2 flex flex-col gap-4">
+            <div className="flex items-center gap-4 mb-2">
+              <span className="font-mono text-[10px] tracking-[4px] text-[#08818d]/60">
+                01
+              </span>
+              <span className="text-[11px] uppercase tracking-[5px] font-bold text-[#08818d]">
                 {t.contactPage.contactInfo}
-              </h2>
-              <div className="h-1 w-12 bg-[#08818d]" />
+              </span>
+              <span className="flex-1 h-px bg-linear-to-r from-[#08818d]/40 to-transparent" />
             </div>
 
-            {/* Info cards */}
             {[
               {
-                icon: <MapPin size={18} />,
+                icon: <MapPin size={16} aria-hidden />,
                 label: t.contactPage.office,
                 value: companyData.address,
+                href: null,
               },
               {
-                icon: <Phone size={18} />,
+                icon: <Phone size={16} aria-hidden />,
                 label: t.contactPage.callUs,
                 value: companyData.phone,
+                href: `tel:${companyData.phone}`,
               },
               {
-                icon: <Mail size={18} />,
+                icon: <Mail size={16} aria-hidden />,
                 label: t.contactPage.emailUs,
                 value: companyData.email,
+                href: `mailto:${companyData.email}`,
               },
               {
-                icon: <Clock size={18} />,
+                icon: <Clock size={16} aria-hidden />,
                 label: t.contactPage.workingHours,
                 value: companyData.workingHours,
+                href: null,
               },
-            ].map(({ icon, label, value }) => (
-              <div
-                key={label}
-                className="flex items-start gap-4 p-5 bg-(--contact-page-bg) border-l-4 border-[#08818d] shadow-sm"
-              >
-                <div className="mt-0.5 text-[#08818d] shrink-0">{icon}</div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-[3px] text-gray-400 font-semibold mb-1">
-                    {label}
-                  </p>
-                  <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                    {value}
-                  </p>
-                </div>
-              </div>
-            ))}
+            ].map(({ icon, label, value, href }) => {
+              const inner = (
+                <>
+                  <div
+                    aria-hidden
+                    className="absolute left-0 top-0 w-px h-full bg-[#08818d] scale-y-0 origin-top group-hover:scale-y-100 transition-transform duration-500"
+                  />
+                  <div className="flex items-center justify-center w-10 h-10 shrink-0 bg-[#08818d]/15 border border-[#08818d]/30 text-[#08818d] group-hover:bg-[#08818d]/25 group-hover:text-[#2dd4bf] transition-colors duration-300">
+                    {icon}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[9px] uppercase tracking-[3px] text-white/40 font-bold mb-1">
+                      {label}
+                    </p>
+                    <p className="text-sm text-white/85 leading-relaxed whitespace-pre-line">
+                      {value}
+                    </p>
+                  </div>
+                  {href && (
+                    <ArrowUpRight
+                      size={14}
+                      className="shrink-0 text-white/20 group-hover:text-[#2dd4bf] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
+                      aria-hidden
+                    />
+                  )}
+                </>
+              );
 
-            {/* Decorative block */}
+              const commonClasses =
+                "group relative overflow-hidden flex items-center gap-4 p-5 backdrop-blur-xl bg-white/3 border border-white/10 hover:bg-white/6 hover:border-[#08818d]/30 transition-all duration-300";
+
+              return href ? (
+                <a key={label} href={href} className={commonClasses}>
+                  {inner}
+                </a>
+              ) : (
+                <div key={label} className={commonClasses}>
+                  {inner}
+                </div>
+              );
+            })}
+
+            {/* Response time block */}
             <div
-              className="mt-2 bg-[#08818d] p-6 text-[#f8fffe]"
+              className="relative overflow-hidden mt-2 p-6 md:p-7 border border-[#08818d]/30"
               style={{
+                background: `linear-gradient(135deg, ${ACCENT}, #0aa3b0)`,
                 clipPath:
-                  "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%)",
+                  "polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px))",
+                boxShadow: "0 0 40px rgba(8,129,141,0.2)",
               }}
             >
-              <p className="text-xs uppercase tracking-[4px] text-[#f8fffe]/60 mb-2">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full blur-[60px] opacity-50 bg-white"
+              />
+              <p className="relative text-[10px] uppercase tracking-[4px] text-white/70 font-bold mb-2">
                 {t.contactPage.responseTime}
               </p>
               <p
-                className="text-4xl font-black tracking-wider"
+                className="relative text-5xl font-black tracking-wider text-white"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 {t.contactPage.within24}
               </p>
-              <p className="text-sm text-[#f8fffe]/60 mt-1">
+              <p className="relative text-sm text-white/75 mt-2 leading-relaxed">
                 {t.contactPage.responseText}
               </p>
             </div>
-          </div>
+          </aside>
 
           {/* ── RIGHT: Form ── */}
-          <div className="md:col-span-3">
-            <Card className="w-full border-0 shadow-xl rounded-none p-0 overflow-hidden bg-(--contact-page-bg)">
-              {/* Card header bar */}
-              <div className="bg-[#1C1C1E] px-8 py-5">
-                <p
-                  className="text-2xl font-black uppercase tracking-widest text-[#f8fffe]"
+          <div className="lg:col-span-3">
+            <div
+              className="relative overflow-hidden backdrop-blur-xl bg-white/3 border border-white/10"
+              style={{
+                clipPath:
+                  "polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px))",
+              }}
+            >
+              {/* Accent halo */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full blur-[80px] opacity-30"
+                style={{ backgroundColor: ACCENT }}
+              />
+
+              {/* Card header */}
+              <div className="relative border-b border-white/10 px-7 md:px-10 py-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="font-mono text-[10px] tracking-[4px] text-[#08818d]/60">
+                    02
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[5px] font-bold text-[#08818d]">
+                    {t.contactPage.sendRequest}
+                  </span>
+                </div>
+                <h2
+                  className="text-3xl md:text-4xl font-black uppercase tracking-wider text-white leading-none"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  {t.contactPage.sendRequest}
-                </p>
-                <p className="text-xs text-[#f8fffe]/40 tracking-widest uppercase mt-1">
                   {t.contactPage.fillDetails}
-                </p>
+                </h2>
               </div>
 
               <form
-                className="p-8 bg-(--contact-page-bg)"
+                className="relative px-7 md:px-10 py-8"
                 onSubmit={handleSubmit}
               >
                 <FieldGroup>
@@ -213,7 +267,7 @@ function ContactPage() {
                     <Field>
                       <FieldLabel
                         htmlFor="form-name"
-                        className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
+                        className={labelClasses}
                       >
                         {t.contactPage.fullName}
                       </FieldLabel>
@@ -223,13 +277,13 @@ function ContactPage() {
                         type="text"
                         placeholder={t.contactPage.placeholderName}
                         required
-                        className="rounded-none border-gray-200 focus:border-[#08818d] focus:ring-[#08818d] mt-1"
+                        className={inputClasses}
                       />
                     </Field>
                     <Field>
                       <FieldLabel
                         htmlFor="form-email"
-                        className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
+                        className={labelClasses}
                       >
                         {t.contactPage.emailAddress}
                       </FieldLabel>
@@ -238,7 +292,7 @@ function ContactPage() {
                         name="email"
                         type="email"
                         placeholder={t.contactPage.placeholderEmail}
-                        className="rounded-none border-gray-200 focus:border-[#08818d] focus:ring-[#08818d] mt-1"
+                        className={inputClasses}
                       />
                     </Field>
                   </div>
@@ -248,7 +302,7 @@ function ContactPage() {
                     <Field>
                       <FieldLabel
                         htmlFor="form-phone"
-                        className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
+                        className={labelClasses}
                       >
                         {t.contactPage.phoneNumber}
                       </FieldLabel>
@@ -257,25 +311,52 @@ function ContactPage() {
                         name="phone"
                         type="tel"
                         placeholder={t.contactPage.placeholderPhone}
-                        className="rounded-none border-gray-200 focus:border-[#08818d] focus:ring-[#08818d] mt-1"
+                        className={inputClasses}
                       />
                     </Field>
                     <Field>
                       <FieldLabel
                         htmlFor="form-type"
-                        className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
+                        className={labelClasses}
                       >
                         {t.contactPage.projectType}
                       </FieldLabel>
                       <select
                         id="form-type"
                         name="type"
-                        className="mt-1 w-full border border-gray-200 bg-(--contact-page-bg) px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-[#08818d] focus:ring-1 focus:ring-[#08818d] rounded-none"
+                        className={`${inputClasses} appearance-none cursor-pointer`}
+                        style={{
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2308818d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "right 12px center",
+                          backgroundSize: "16px",
+                          paddingRight: "40px",
+                        }}
                       >
-                        <option>{t.contactPage.typeRenovation}</option>
-                        <option>{t.contactPage.typeNewBuild}</option>
-                        <option>{t.contactPage.typeCommercial}</option>
-                        <option>{t.contactPage.typeSmallRepair}</option>
+                        <option
+                          className="bg-[#0a0a0b] text-white"
+                          value={t.contactPage.typeRenovation}
+                        >
+                          {t.contactPage.typeRenovation}
+                        </option>
+                        <option
+                          className="bg-[#0a0a0b] text-white"
+                          value={t.contactPage.typeNewBuild}
+                        >
+                          {t.contactPage.typeNewBuild}
+                        </option>
+                        <option
+                          className="bg-[#0a0a0b] text-white"
+                          value={t.contactPage.typeCommercial}
+                        >
+                          {t.contactPage.typeCommercial}
+                        </option>
+                        <option
+                          className="bg-[#0a0a0b] text-white"
+                          value={t.contactPage.typeSmallRepair}
+                        >
+                          {t.contactPage.typeSmallRepair}
+                        </option>
                       </select>
                     </Field>
                   </div>
@@ -284,47 +365,66 @@ function ContactPage() {
                   <Field className="mt-5">
                     <FieldLabel
                       htmlFor="form-message"
-                      className="text-[10px] uppercase tracking-[3px] text-gray-500 font-semibold"
+                      className={labelClasses}
                     >
                       {t.contactPage.projectDetails}
                     </FieldLabel>
                     <textarea
                       id="form-message"
                       name="message"
-                      className="mt-1 w-full border border-gray-200 bg-(--contact-page-bg) px-3 py-2 text-sm text-gray-700 min-h-32.5 focus:outline-none focus:border-[#08818d] focus:ring-1 focus:ring-[#08818d] rounded-none resize-none"
+                      className={`${inputClasses} min-h-36 resize-none`}
                       placeholder={t.contactPage.placeholderMessage}
                     />
                   </Field>
 
                   {/* Submit row */}
-                  <div className="flex justify-end items-center gap-4 pt-6 mt-2 border-t border-gray-100">
+                  <div className="flex flex-col sm:flex-row sm:justify-end sm:items-center gap-4 pt-7 mt-5 border-t border-white/10">
                     {mutation.isSuccess && (
-                      <span className="text-xs uppercase tracking-widest text-[#08818d] font-semibold">
-                        ✓ {t.contactPage.success}
+                      <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[3px] text-[#2dd4bf] font-bold">
+                        <CheckCircle2 size={14} aria-hidden />
+                        {t.contactPage.success}
                       </span>
                     )}
                     {mutation.isError && (
-                      <span className="text-xs uppercase tracking-widest text-red-500 font-semibold">
-                        ✗ {t.contactPage.error}
+                      <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[3px] text-red-400 font-bold">
+                        <AlertCircle size={14} aria-hidden />
+                        {t.contactPage.error}
                       </span>
                     )}
                     <Button
                       type="submit"
                       disabled={mutation.isPending}
-                      className="bg-[#08818d] text-[#f8fffe] hover:bg-[#067580] rounded-none px-10 py-3 text-xs font-bold uppercase tracking-[3px] transition-all duration-200 hover:-translate-y-px active:translate-y-0 disabled:opacity-60"
+                      className="group relative rounded-none px-10 py-5 text-[11px] font-bold uppercase tracking-[4px] text-white overflow-hidden transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
                       style={{
+                        background: `linear-gradient(135deg, ${ACCENT}, #0aa3b0)`,
                         clipPath:
-                          "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))",
+                          "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
+                        boxShadow: "0 0 25px rgba(8,129,141,0.3)",
                       }}
                     >
-                      {mutation.isPending
-                        ? t.contactPage.sending
-                        : t.contactPage.send}
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{
+                          background:
+                            "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.25) 50%, transparent 65%)",
+                        }}
+                      />
+                      <span className="relative inline-flex items-center gap-2">
+                        {mutation.isPending
+                          ? t.contactPage.sending
+                          : t.contactPage.send}
+                        <Send
+                          size={12}
+                          className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          aria-hidden
+                        />
+                      </span>
                     </Button>
                   </div>
                 </FieldGroup>
               </form>
-            </Card>
+            </div>
           </div>
         </div>
       </div>

@@ -48,7 +48,7 @@ const Home = () => {
           </p>
 
           <h1
-            className="flex flex-col gap-1 md:gap-2 text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-black uppercase leading-[0.95] md:leading-none tracking-wider text-white"
+            className="flex flex-col gap-1 md:gap-2 text-4xl sm:text-5xl md:text-8xl font-black uppercase leading-[0.95] md:leading-none tracking-wider text-white"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
             {t.home.titleTop}
