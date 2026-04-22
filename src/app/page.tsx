@@ -27,7 +27,7 @@ const Home = () => {
           <Hexagon />
         </div>
         {/* ── Main content ── */}
-        <div className="relative z-10 flex w-full max-w-5xl flex-col items-center gap-5 px-4 md:gap-8 md:px-6 pt-2 md:pt-5 text-center">
+        <div className="pointer-events-none relative z-10 flex w-full max-w-5xl flex-col items-center gap-5 px-4 md:gap-8 md:px-6 pt-2 md:pt-5 text-center">
           {/* 3D Logo */}
           <HeroLogo />
 
@@ -62,7 +62,7 @@ const Home = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-1 md:pt-2">
+          <div className="pointer-events-auto flex flex-wrap items-center justify-center gap-4 pt-1 md:pt-2">
             <Link href="/projects">
               <button
                 className="group/btn relative overflow-hidden px-8 md:px-12 py-3 md:py-4 text-xs md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px] text-white transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
